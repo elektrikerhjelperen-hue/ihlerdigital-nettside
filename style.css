@@ -68,8 +68,8 @@ p{margin:0 0 1em}
 
 /* Skinna: tegnes i hvert bånd, så fargene kan følge bakgrunnen */
 .skinnefelt{position:relative}
-.skinnefelt>*,.kveld>*{position:relative}
-.skinnefelt>:not(.kveld)::before,.kveld>*::before{content:"";position:absolute;inset:0 auto 0 var(--L);width:calc(var(--s)*4 + var(--w));pointer-events:none;
+.skinnefelt>*{position:relative}
+.skinnefelt>*::before{content:"";position:absolute;inset:0 auto 0 var(--L);width:calc(var(--s)*4 + var(--w));pointer-events:none;
   background:
    linear-gradient(var(--l1) 0 0) 0 0/var(--w) 100% no-repeat,
    linear-gradient(var(--l2) 0 0) var(--s) 0/var(--w) 100% no-repeat,
@@ -113,7 +113,6 @@ tbody tr td:last-child{white-space:nowrap}
 .sti{margin-bottom:14px}
 .kjempe{font:800 clamp(3.75rem,15.5vw,15rem)/.92 var(--stor);text-transform:uppercase;letter-spacing:-.005em}
 .kjempe span{display:block}
-.kurs-liten .kjempe{font-size:clamp(3.25rem,10vw,9rem)}
 .mellom{font:900 clamp(2.5rem,5.5vw,4.5rem)/.95 var(--stor);text-transform:uppercase;margin-bottom:.25em}
 .ingress{font-size:clamp(1.1875rem,1.7vw,1.5rem);line-height:1.32;font-weight:500;max-width:30em}
 .kurs-kropp{display:grid;gap:36px;margin-top:clamp(24px,4vw,56px)}
@@ -136,7 +135,6 @@ tbody tr td:last-child{white-space:nowrap}
 .stabel .telefon:first-child{margin-left:0;z-index:2}
 .stabel-3 .telefon:nth-child(2){margin-top:12%;z-index:3}
 .stabel-3 .telefon:nth-child(3){margin-top:-4%;margin-right:-14%}
-.stabel-2 .telefon:nth-child(2){margin-top:14%;margin-right:-6%}
 @media (min-width:900px){.stabel-3{margin-right:calc(var(--hoyre)*-1)}.stabel-3 .telefon:nth-child(3){margin-right:-6%}}
 
 .maalstrek{position:relative;margin-top:14px;text-align:center;font:500 .75rem/1.3 var(--mono);font-stretch:75%;text-transform:uppercase}
@@ -147,23 +145,12 @@ tbody tr td:last-child{white-space:nowrap}
 .stabel-4 .telefon:nth-child(even){margin-top:8%}
 .el .kurs-kropp{grid-template-columns:minmax(0,1fr)}
 .el .kurs-tekst{max-width:44em}
-.tr .kurs-kropp{grid-template-columns:minmax(0,1fr)}
-.tr .kurs-tekst{max-width:36em}
-.stripene{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.2vw,18px);margin-right:calc(var(--hoyre)*-1)}
-.stripe img{width:100%;height:clamp(240px,42vw,620px);object-fit:cover;object-position:50% 62%}
-@media (min-width:900px){.tl .kurs-kropp{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}.tl .kurs-tekst{order:2}}
 
 /* Benk */
 .benk{padding-block:clamp(36px,5vw,64px)}
 .benk-rad{display:grid;grid-template-columns:minmax(0,1fr) minmax(112px,34%);gap:20px;align-items:center}
 @media (min-width:900px){.benk-rad{grid-template-columns:minmax(0,1fr) 220px;gap:64px}}
 .benk p{max-width:34em}
-
-/* Kveld */
-.kveld{background:#0e0f11;color:#efefe8;--blekk:#efefe8;--dempet:#b5b8bc;--strek:#efefe82e;--l1:#a86f42;--l2:#efefe8;--l3:#6f7377;--n:#3f8cdd}
-.kveld-hode{padding-block:clamp(56px,8vw,120px) clamp(36px,5vw,72px)}
-.kveld-hode .ingress{margin:.9em 0 0}
-.kveld-hode .mono{color:#b5b8bc}
 
 /* Oss */
 .oss{padding-block:clamp(56px,9vw,130px)}
@@ -237,6 +224,33 @@ tbody th a span{min-width:0;overflow-wrap:anywhere}
 @media (max-width:640px){tbody th{font-size:1.25rem}td.mono{font-size:.6875rem}}
 .maalstrek span{white-space:nowrap}
 @media (max-width:640px){.maalstrek{font-size:.625rem}}
-.tl .stabel-2 .telefon:nth-child(2){margin-right:0}
 @media (max-width:640px){tbody th{font-size:1.125rem}tbody th a{gap:10px}tbody .ikon img{width:32px}}
 #h-oss{line-height:1.08}
+
+/* Bedriften */
+.helt-valg{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin:0}
+.helt .knapp{position:relative}
+.hva .mellom{margin-bottom:0}
+.hva.hl{background:var(--bg);color:var(--ink)}
+.fortegnelse-etter{margin:18px 0 0}
+.kontakt .ingress{margin-top:.9em;max-width:32em}
+.kontakt .knapp{overflow-wrap:anywhere}
+.spill-linje{margin:0;padding-block:22px;color:var(--dempet);font-size:.9375rem}
+.spill-linje .les{color:var(--blekk)}
+
+/* Apper */
+.apper-hode{padding-block:clamp(28px,5vw,64px) clamp(24px,4vw,48px)}
+.apper-hode .ingress{margin:.9em 0 0}
+.gruppehode{padding-bottom:18px;border-top:3px solid var(--blekk);padding-top:18px}
+.gruppehode h2{font:900 clamp(2.25rem,5vw,4rem)/1 var(--stor);text-transform:uppercase}
+.spill{padding-block:clamp(28px,4vw,48px) clamp(36px,5vw,64px)}
+.spill .seksjonshode h2{font-size:clamp(1.75rem,3vw,2.5rem)}
+.spill table{border-top-width:1px}
+.spill tbody th{font-size:clamp(1.125rem,1.8vw,1.5rem)}
+.spill tbody .ikon img{width:32px}
+
+/* Avsender på appsidene */
+.avsender{padding-block:clamp(36px,5vw,64px);border-top:3px solid var(--blekk)}
+.avsender p{margin-bottom:.6em}
+.helt h1{line-height:1.04}
+.spill-linje .les{white-space:nowrap}

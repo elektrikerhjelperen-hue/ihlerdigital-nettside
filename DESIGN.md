@@ -12,7 +12,7 @@ Skjermbilder og tekst fra Panic, Teenage Engineering, Playdate, Lux (Halide) og 
 Fellesnevner for de særegne: ett eget *system* hentet fra det de faktisk driver med, ikke en stil.
 
 ## Retning: Koblingsskjemaet
-Kristian er elektriker. Hele nettstedet er tegnet som et elektroskjema. Fem ledere med ekte fargekoder (brun L1, svart L2, grå L3, blå N, gul/grønn PE) kommer inn fra høyre, tegner profilen av Hallingskarvet, faller ned i venstre marg og blir en samleskinne som går gjennom hele siden. Hver app er en **kurs** som er koblet på skinna. Forsiden har en ekte **kursfortegnelse** som innholdsfortegnelse, og bunnen er et **tittelfelt** som på en arbeidstegning.
+Selskapet har elektrofaget i huset. Hele nettstedet er tegnet som et elektroskjema. Fem ledere med ekte fargekoder (brun L1, svart L2, grå L3, blå N, gul/grønn PE) kommer inn fra høyre, tegner profilen av Hallingskarvet, faller ned i venstre marg og blir en samleskinne som går gjennom hele siden. Hver app er en **kurs** som er koblet på skinna. Bunnen er et **tittelfelt** som på en arbeidstegning.
 
 Tonen er verkstedets: kort, tørr, konkret. Ingen «innovative løsninger». Tall og mål framfor adjektiver.
 
@@ -36,7 +36,9 @@ Hver app får et helt bånd i sin egen ekte farge: Elektrikerhjelpen signalgul, 
 
 ## Layout
 - Skinna ligger fast i venstre marg og går over alle bånd. Hver kurs kobles på med terminal og strek.
-- Tydelig hierarki: Elektrikerhjelpen størst, Garasjen stor, spillene i et mørkt «etter arbeidstid»-kapittel, det som er under arbeid som små rader.
+- Forsiden handler om selskapet: hvem vi er, hva vi står for, slik jobber vi, verktøyene som en kort fortegnelse, kontakt. Spillene er bare én lenke nederst.
+- `/apper/` viser Verktøy med store bånd, og Spill som en enkel, lett tabell helt nederst.
+- Ingen personnavn på siden, bare Ihler Digital og det juridiske selskapet.
 - Telefoner forskjøvet og overlappende, navn i ekstrem størrelse som går helt ut i kanten.
 - Appside: stort bånd, skjermbilder i horisontal rekke, hva den gjør, hvem den er for, støtte, personvern.
 

@@ -5,7 +5,7 @@ export const firma = {
   orgnr: '935436389',
   merknad: 'Navneendring til Ihler Digital AS pågår',
   epost: 'support@ihlerdigital.no',
-  tegnetAv: 'K. Ihler, M. Ihler',
+  tegnetAv: 'Ihler Digital',
   sted: 'Ål i Hallingdal',
 };
 
