@@ -13,6 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nb_NO">
 <meta property="og:image" content="https://ihlerdigital.no/og.jpg">
+<script>if(matchMedia('(prefers-reduced-motion:no-preference)').matches)document.documentElement.classList.add('tegn')</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonter/bigshoulders.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonter/schibsted.woff2" as="font" type="font/woff2" crossorigin>
@@ -27,11 +28,11 @@
 <main id="innhold"><div class="skinnefelt">
 <section class="innrykk apper-hode" aria-labelledby="h1">
 <p class="sti mono"><a href="/">Ihler Digital</a> / Apper</p>
-<h1 class="kjempe" id="h1">Apper</h1>
+<h1 class="kjempe uttak" data-leder="0" style="--i:0" id="h1"><span class="tilkobling" aria-hidden="true"><i></i><i></i></span>Apper</h1>
 <p class="ingress">Verktøy for jobb og hverdag. Lenger ned finner du også noen spill.</p>
 </section>
 <section class="innrykk gruppehode" id="verktoy" aria-labelledby="h-verktoy">
-<h2 id="h-verktoy">Verktøy</h2>
+<h2 class="uttak" data-leder="1" style="--i:1" id="h-verktoy"><span class="tilkobling" aria-hidden="true"><i></i><i></i></span>Verktøy</h2>
 </section>
 <section class="kurs el" aria-labelledby="h-elektrikerhjelpen">
 <div class="innrykk">
@@ -63,13 +64,13 @@
 </div>
 </section>
 <section class="fortegnelse innrykk spill" id="spill" aria-labelledby="h-spill">
-<div class="seksjonshode"><h2 id="h-spill">Spill</h2><p class="mono">Noe vi lager ved siden av verktøyene.</p></div>
+<div class="seksjonshode"><h2 class="uttak" data-leder="2" style="--i:2" id="h-spill"><span class="tilkobling" aria-hidden="true"><i></i><i></i></span>Spill</h2><p class="mono">Noe vi lager ved siden av verktøyene.</p></div>
 <table>
 <thead><tr><th scope="col">Kurs</th><th scope="col">Navn</th><th scope="col" class="skjul-smal">For hvem</th><th scope="col">Status</th></tr></thead>
 <tbody>
-<tr><td class="mono">K4</td><th scope="row"><a href="/trollminetycoon/"><picture class="ikon"><source type="image/avif" srcset="/ikoner/trollminetycoon-128.avif 1x,/ikoner/trollminetycoon-320.avif 2x"><img src="/ikoner/trollminetycoon-320.webp" alt="" width="40" height="40" loading="lazy" decoding="async"></picture><span>Troll Mine Tycoon</span></a></th><td class="skjul-smal">Gruvesjefer</td><td class="mono">I App Store</td></tr>
-<tr><td class="mono">K5</td><th scope="row"><a href="/totallylegit/"><picture class="ikon"><source type="image/avif" srcset="/ikoner/totallylegit-128.avif 1x,/ikoner/totallylegit-320.avif 2x"><img src="/ikoner/totallylegit-320.webp" alt="" width="40" height="40" loading="lazy" decoding="async"></picture><span>TotallyLegit Idle</span></a></th><td class="skjul-smal">Kjellerkontor</td><td class="mono">I App Store</td></tr>
-<tr><td class="mono">K6</td><th scope="row"><a href="/block-kingdom/"><picture class="ikon"><source type="image/avif" srcset="/ikoner/block-kingdom-128.avif 1x,/ikoner/block-kingdom-320.avif 2x"><img src="/ikoner/block-kingdom-320.webp" alt="" width="40" height="40" loading="lazy" decoding="async"></picture><span>Block Kingdom</span></a></th><td class="skjul-smal">Puslespillere</td><td class="mono">Under arbeid</td></tr>
+<tr><td class="mono rad-kurs" data-leder="0" style="--i:0"><span class="tilkobling" aria-hidden="true"><i></i><i></i></span>K4</td><th scope="row"><a href="/trollminetycoon/"><picture class="ikon"><source type="image/avif" srcset="/ikoner/trollminetycoon-128.avif 1x,/ikoner/trollminetycoon-320.avif 2x"><img src="/ikoner/trollminetycoon-320.webp" alt="" width="40" height="40" loading="lazy" decoding="async"></picture><span>Troll Mine Tycoon</span></a></th><td class="skjul-smal">Gruvesjefer</td><td class="mono">I App Store</td></tr>
+<tr><td class="mono rad-kurs" data-leder="1" style="--i:1"><span class="tilkobling" aria-hidden="true"><i></i><i></i></span>K5</td><th scope="row"><a href="/totallylegit/"><picture class="ikon"><source type="image/avif" srcset="/ikoner/totallylegit-128.avif 1x,/ikoner/totallylegit-320.avif 2x"><img src="/ikoner/totallylegit-320.webp" alt="" width="40" height="40" loading="lazy" decoding="async"></picture><span>TotallyLegit Idle</span></a></th><td class="skjul-smal">Kjellerkontor</td><td class="mono">I App Store</td></tr>
+<tr><td class="mono rad-kurs" data-leder="2" style="--i:2"><span class="tilkobling" aria-hidden="true"><i></i><i></i></span>K6</td><th scope="row"><a href="/block-kingdom/"><picture class="ikon"><source type="image/avif" srcset="/ikoner/block-kingdom-128.avif 1x,/ikoner/block-kingdom-320.avif 2x"><img src="/ikoner/block-kingdom-320.webp" alt="" width="40" height="40" loading="lazy" decoding="async"></picture><span>Block Kingdom</span></a></th><td class="skjul-smal">Puslespillere</td><td class="mono">Under arbeid</td></tr>
 </tbody></table>
 
 </section>
@@ -88,5 +89,46 @@
 <div><dt>Rev.</dt><dd>09.11.2026</dd></div>
 </dl>
 </footer>
+<script>(function(){
+var d=document,r=d.documentElement,TRINN=56,
+ B=[].slice.call(d.querySelectorAll('.skinnefelt>*')),
+ P=[].slice.call(d.querySelectorAll('.skinnefelt .tilkobling,.jord'));
+if(!r.classList.contains('tegn')||!B.length)return;
+var b=[],p=[],slutt=0,fra=0,bredde=innerWidth,ko=0,t0=0,
+ forsinkelse=d.querySelector('.fjell')?1400:0,INTRO=900,ferdig=false;
+function mal(){
+ var y=scrollY;
+ b=B.map(function(e,i){var q=e.getBoundingClientRect();return{e:e,top:q.top+y,h:q.height,t:b[i]?b[i].t:null}});
+ p=P.map(function(e,i){var q=e.getBoundingClientRect();return{e:e,y:q.top+q.height/2+y,paa:p[i]?p[i].paa:null}});
+ fra=b[0].top;slutt=b[b.length-1].top+b[b.length-1].h;
+ tegn();
+}
+function tegn(){
+ ko=0;
+ var vh=innerHeight,maks=Math.max(r.scrollHeight-vh,0),s=Math.min(Math.max(scrollY,0),maks),
+  mal0=.72*vh,malS=slutt+TRINN-maks,a=Math.min(Math.max((s-(maks-vh))/vh,0),1),
+  spiss=s+mal0+(malS-mal0)*a;
+ if(!ferdig){
+  var k=Math.min(Math.max((performance.now()-t0-forsinkelse)/INTRO,0),1);
+  if(k>=1)ferdig=true;else planlegg();
+  spiss=fra+(spiss-fra)*(1-Math.pow(1-k,3));
+ }
+ b.forEach(function(x){
+  var t=Math.round(Math.min(Math.max(spiss-x.top-TRINN,-TRINN),x.h));
+  if(t!==x.t){x.t=t;x.e.style.setProperty('--t',t+'px')}
+ });
+ p.forEach(function(x){
+  var paa=spiss>=Math.min(x.y+TRINN,slutt+TRINN);
+  if(paa!==x.paa){x.paa=paa;x.e.classList.toggle('paa',paa)}
+ });
+}
+function planlegg(){if(!ko)ko=requestAnimationFrame(tegn)}
+t0=performance.now();
+mal();
+addEventListener('scroll',planlegg,{passive:true});
+addEventListener('pageshow',planlegg);
+addEventListener('resize',function(){if(innerWidth!==bredde){bredde=innerWidth;mal()}else planlegg()});
+if(window.ResizeObserver)new ResizeObserver(mal).observe(d.body);
+})();</script>
 </body>
 </html>

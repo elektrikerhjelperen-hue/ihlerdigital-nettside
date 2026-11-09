@@ -10,6 +10,7 @@ const les = (p) => fs.readFileSync(path.join(ROT, p), 'utf8');
 const skriv = (p, s) => { fs.mkdirSync(path.dirname(path.join(ROT, p)), { recursive: true }); fs.writeFileSync(path.join(ROT, p), s); };
 const finnes = (p) => fs.existsSync(path.join(ROT, p));
 const mal = JSON.parse(les('_bygg/bildemal.json'));
+const TEGN_JS = les('_bygg/tegn.js').trim();
 const e = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
 // ---- Lederne: en polylinje forskjøvet parallelt ---------------------------
@@ -52,6 +53,7 @@ const HODE = (o) => `<!doctype html>
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nb_NO">
 <meta property="og:image" content="https://ihlerdigital.no/og.jpg">
+<script>if(matchMedia('(prefers-reduced-motion:no-preference)').matches)document.documentElement.classList.add('tegn')</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonter/bigshoulders.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonter/schibsted.woff2" as="font" type="font/woff2" crossorigin>
@@ -80,6 +82,7 @@ const FOT = (tegn = "ID-001") => `<footer class="tittelfelt"><span class="jord" 
 <div><dt>Rev.</dt><dd>${iso.split('-').reverse().join('.')}</dd></div>
 </dl>
 </footer>
+<script>${TEGN_JS}</script>
 </body>
 </html>
 `;
@@ -90,7 +93,9 @@ function bilde(slug, navn, alt, sizes, lazy = true) {
   return `<picture><source type="image/avif" srcset="${b('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${b('webp')}" sizes="${sizes}"><img src="/bilder/${slug}/${navn}-720.webp" alt="${e(alt)}" width="720" height="${Math.round(720 * r)}"${lazy ? ' loading="lazy" decoding="async"' : ' fetchpriority="high"'}></picture>`;
 }
 const telefon = (a, i, sizes, lazy, ekstra = '') => `<figure class="telefon ${ekstra}"><div class="ramme">${bilde(a.slug, a.bilder[i][0], a.bilder[i][1], sizes, lazy)}</div><figcaption class="maalstrek"><span>${a.bilder[i][2]}</span></figcaption></figure>`;
-const kursLinje = (a, tekst) => `<p class="kursnr" data-leder="${a.leder}" style="--i:${a.leder}"><span class="tilkobling" aria-hidden="true"><i></i><i></i></span><b>${a.kurs}</b> <span class="mono">${tekst}</span></p>`;
+const KOBLING = '<span class="tilkobling" aria-hidden="true"><i></i><i></i></span>';
+const uttak = (i) => `data-leder="${i}" style="--i:${i}"`;
+const kursLinje = (a, tekst) => `<p class="kursnr" ${uttak(a.leder)}>${KOBLING}<b>${a.kurs}</b> <span class="mono">${tekst}</span></p>`;
 const ikon = (a, s) => `<picture class="ikon"><source type="image/avif" srcset="/ikoner/${a.slug}-128.avif 1x,/ikoner/${a.slug}-320.avif 2x"><img src="/ikoner/${a.slug}-320.webp" alt="" width="${s}" height="${s}" loading="lazy" decoding="async"></picture>`;
 const storeKnapp = (a, t = 'Hent i App Store') => a.store ? `<a class="knapp" href="${a.store}">${t}</a>` : `<span class="merkelapp">Under arbeid</span>`;
 const navnH = (a) => a.deler.map((d) => `<span>${d}</span>`).join(' ');
@@ -101,11 +106,11 @@ const SPILL = apper.filter((x) => x.gruppe === 'Spill');
 const a = Object.fromEntries(apper.map((x) => [x.slug, x]));
 
 const fortegnelse = (liste, o) => `<section class="fortegnelse innrykk ${o.klasse || ''}" id="${o.id}" aria-labelledby="h-${o.id}">
-<div class="seksjonshode"><h2 id="h-${o.id}">${o.tittel}</h2><p class="mono">${o.undertekst}</p></div>
+<div class="seksjonshode"><h2 class="uttak" ${uttak(o.leder ?? 0)} id="h-${o.id}">${KOBLING}${o.tittel}</h2><p class="mono">${o.undertekst}</p></div>
 <table>
 <thead><tr><th scope="col">Kurs</th><th scope="col">Navn</th><th scope="col" class="skjul-smal">For hvem</th><th scope="col">Status</th></tr></thead>
 <tbody>
-${liste.map((x) => `<tr><td class="mono">${x.kurs}</td><th scope="row"><a href="/${x.slug}/">${ikon(x, 40)}<span>${x.navn}</span></a></th><td class="skjul-smal">${x.gaarTil}</td><td class="mono">${x.underArbeid ? 'Under arbeid' : 'I App Store'}</td></tr>`).join('\n')}
+${liste.map((x) => `<tr><td class="mono rad-kurs" ${uttak(x.leder)}>${KOBLING}${x.kurs}</td><th scope="row"><a href="/${x.slug}/">${ikon(x, 40)}<span>${x.navn}</span></a></th><td class="skjul-smal">${x.gaarTil}</td><td class="mono">${x.underArbeid ? 'Under arbeid' : 'I App Store'}</td></tr>`).join('\n')}
 </tbody></table>
 ${o.etter || ''}
 </section>`;
@@ -169,7 +174,7 @@ const forside = HODE({ tittel: 'Ihler Digital – programvare fra Ål i Hallingd
 </section>
 <div class="skinnefelt">
 <section class="oss innrykk" id="oss" aria-labelledby="h-oss">
-<h2 class="kjempe" id="h-oss">Hvem vi er</h2>
+<h2 class="kjempe uttak" ${uttak(0)} id="h-oss">${KOBLING}Hvem vi er</h2>
 <div class="oss-tekst">
 <p class="ingress">Vi lager programvare for folk som trenger at den virker: på byggeplassen, i garasjen og hjemme.</p>
 <p>Vi holder til i Ål i Hallingdal og har elektrofaget i huset. Det preger måten vi jobber på: kontroll, mål og dokumentasjon skal henge sammen.</p>
@@ -177,17 +182,17 @@ const forside = HODE({ tittel: 'Ihler Digital – programvare fra Ål i Hallingd
 </div>
 </section>
 <section class="innrykk hva prinsipper" aria-labelledby="h-prinsipp">
-<h2 class="mellom" id="h-prinsipp">Hva vi står for</h2>
+<h2 class="mellom uttak" ${uttak(1)} id="h-prinsipp">${KOBLING}Hva vi står for</h2>
 ${punktliste('P', STAR_FOR)}
 </section>
 <section class="innrykk hva hl" aria-labelledby="h-slik">
-<h2 class="mellom" id="h-slik">Slik jobber vi</h2>
+<h2 class="mellom uttak" ${uttak(2)} id="h-slik">${KOBLING}Slik jobber vi</h2>
 ${punktliste('A', SLIK)}
 </section>
 ${fortegnelse(VERKTOY, { id: 'apper', tittel: 'Verktøy', undertekst: 'Det vi har laget for jobb og hverdag.', etter: '<p class="fortegnelse-etter"><a class="les" href="/apper/">Se alle appene<span aria-hidden="true"> →</span></a></p>' })}
 <section class="kurs el kontakt" id="kontakt" aria-labelledby="h-kontakt">
 <div class="innrykk">
-<h2 class="kjempe" id="h-kontakt">Ta kontakt</h2>
+<h2 class="kjempe uttak" ${uttak(1)} id="h-kontakt">${KOBLING}Ta kontakt</h2>
 <p class="ingress">Driver du elektrikerbedrift, vil du samarbeide, eller har du spørsmål om en av appene? Skriv til oss.</p>
 <p><a class="knapp" href="mailto:${firma.epost}">${firma.epost}</a></p>
 </div>
@@ -202,16 +207,16 @@ skriv('index.html', forside);
 skriv('apper/index.html', HODE({ tittel: 'Apper – Ihler Digital', beskrivelse: 'Verktøy og spill fra Ihler Digital: Elektrikerhjelpen, Garasjen og Handlelista, og noen spill ved siden av.', klasse: 'hjem' }) + `<main id="innhold"><div class="skinnefelt">
 <section class="innrykk apper-hode" aria-labelledby="h1">
 <p class="sti mono"><a href="/">Ihler Digital</a> / Apper</p>
-<h1 class="kjempe" id="h1">Apper</h1>
+<h1 class="kjempe uttak" ${uttak(0)} id="h1">${KOBLING}Apper</h1>
 <p class="ingress">Verktøy for jobb og hverdag. Lenger ned finner du også noen spill.</p>
 </section>
 <section class="innrykk gruppehode" id="verktoy" aria-labelledby="h-verktoy">
-<h2 id="h-verktoy">Verktøy</h2>
+<h2 class="uttak" ${uttak(1)} id="h-verktoy">${KOBLING}Verktøy</h2>
 </section>
 ${kursBand(a.elektrikerhjelpen)}
 ${kursBand(a.garasjen)}
 ${benk(a.handlelista)}
-${fortegnelse(SPILL, { id: 'spill', klasse: 'spill', tittel: 'Spill', undertekst: 'Noe vi lager ved siden av verktøyene.' })}
+${fortegnelse(SPILL, { id: 'spill', leder: 2, klasse: 'spill', tittel: 'Spill', undertekst: 'Noe vi lager ved siden av verktøyene.' })}
 </div></main>
 ` + FOT('ID-002'));
 

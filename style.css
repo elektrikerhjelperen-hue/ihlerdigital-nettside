@@ -82,7 +82,9 @@ p{margin:0 0 1em}
 .tilkobling::before,.tilkobling i{content:"";position:absolute;width:calc(var(--w) + 8px);aspect-ratio:1;border-radius:50%;top:50%;transform:translate(-50%,-50%);background:var(--c);left:calc(var(--w)/2)}
 .tilkobling i:nth-child(1){left:calc(var(--s)*(3 - var(--i)) + var(--w)/2);background:var(--n)}
 .tilkobling i:nth-child(2){left:calc(var(--s)*(4 - var(--i)) + var(--w)/2);background:var(--pe-g)}
-.kursnr[data-leder="0"]{--c:var(--l1)}.kursnr[data-leder="1"]{--c:var(--l2)}.kursnr[data-leder="2"]{--c:var(--l3)}
+[data-leder="0"]{--c:var(--l1)}[data-leder="1"]{--c:var(--l2)}[data-leder="2"]{--c:var(--l3)}
+.uttak,.rad-kurs{position:relative}
+.uttak>.tilkobling{top:.5lh}
 .jord{position:absolute;left:calc(var(--L) + var(--s)*4 + var(--w)/2);top:8px;width:20px;height:3px;background:var(--pe-g);transform:translateX(-50%);box-shadow:0 6px 0 -2px var(--pe-g),0 12px 0 -4px var(--pe-g)}
 
 /* Fortegnelse */
@@ -207,6 +209,17 @@ tbody tr td:last-child{white-space:nowrap}
 .brudd .knapp{--ink:var(--blekk);--bg:var(--papir)}
 
 /* Bevegelse */
+/* Skinna tegnes med scroll: et deksel i båndets egen farge trekkes nedover av _bygg/tegn.js.
+   Trappa i toppen gjør at hver leder har sin egen spiss. 14px per trinn må stemme med TRINN (56) i tegn.js. */
+@media screen{
+  .tegn .skinnefelt>*{overflow:clip}
+  .tegn .skinnefelt>*::after{--b:calc(2px + var(--w)/2 + var(--s)/2);content:"";position:absolute;top:0;bottom:-56px;left:calc(var(--L) - 2px);width:calc(var(--s)*4 + var(--w) + 4px);pointer-events:none;background:var(--bg,var(--papir));transform:translate3d(0,var(--t,-56px),0);will-change:transform;
+    clip-path:polygon(0 56px,var(--b) 56px,var(--b) 42px,calc(var(--b) + var(--s)) 42px,calc(var(--b) + var(--s)) 28px,calc(var(--b) + var(--s)*2) 28px,calc(var(--b) + var(--s)*2) 14px,calc(var(--b) + var(--s)*3) 14px,calc(var(--b) + var(--s)*3) 0,100% 0,100% 100%,0 100%)}
+  .tegn .tilkobling{clip-path:inset(-12px 100% -12px -12px);transition:clip-path .45s cubic-bezier(.65,0,.2,1)}
+  .tegn .tilkobling.paa{clip-path:inset(-12px)}
+  .tegn .jord{opacity:0;transition:opacity .3s}
+  .tegn .jord.paa{opacity:1}
+}
 @media (prefers-reduced-motion:no-preference){
   @supports (animation-timeline:view()){
     .stabel .telefon,.rekke .telefon:nth-child(even){animation:glid linear both;animation-timeline:view();animation-range:entry 0% entry 60%}

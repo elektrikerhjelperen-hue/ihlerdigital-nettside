@@ -44,7 +44,7 @@ Hver app får et helt bånd i sin egen ekte farge: Elektrikerhjelpen signalgul, 
 - Appside: stort bånd, skjermbilder i horisontal rekke, hva den gjør, hvem den er for, støtte, personvern.
 
 ## Bevegelse
-Lederne tegner seg selv ved lasting. Telefoner glir inn med `animation-timeline: view()` der det støttes. Bare CSS, null JS. Alt slås av ved `prefers-reduced-motion`.
+Lederne tegner Hallingskarvet ved lasting, og skinna tegnes videre med scroll helt ned til tittelfeltet, med avgreininger inn til seksjoner og kurser. Det styres av ett felles tegnepunkt i `_bygg/tegn.js` (legges inline, ingen ekstra forespørsel) som flytter et deksel med `transform`. Uten JS, ved utskrift og ved `prefers-reduced-motion` står lederne ferdig tegnet. Telefoner glir inn med `animation-timeline: view()` der det støttes.
 
 ## Bygg
 `_bygg/bygg.mjs` lager alle HTML-filene av `_bygg/data.mjs`. `node _bygg/bygg.mjs`. Teksten i personvern-artiklene leses fra den publiserte HTML-en og endres aldri av bygget.
