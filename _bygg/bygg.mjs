@@ -93,7 +93,7 @@ function bilde(slug, navn, alt, sizes, lazy = true) {
   return `<picture><source type="image/avif" srcset="${b('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${b('webp')}" sizes="${sizes}"><img src="/bilder/${slug}/${navn}-720.webp" alt="${e(alt)}" width="720" height="${Math.round(720 * r)}"${lazy ? ' loading="lazy" decoding="async"' : ' fetchpriority="high"'}></picture>`;
 }
 const telefon = (a, i, sizes, lazy, ekstra = '') => `<figure class="telefon ${ekstra}"><div class="ramme">${bilde(a.slug, a.bilder[i][0], a.bilder[i][1], sizes, lazy)}</div><figcaption class="maalstrek"><span>${a.bilder[i][2]}</span></figcaption></figure>`;
-const KOBLING = '<span class="tilkobling" aria-hidden="true"><i></i><i></i></span>';
+const KOBLING = '<span class="tilkobling" aria-hidden="true"><i></i><i></i><i></i></span>';
 const uttak = (i) => `data-leder="${i}" style="--i:${i}"`;
 const kursLinje = (a, tekst) => `<p class="kursnr" ${uttak(a.leder)}>${KOBLING}<b>${a.kurs}</b> <span class="mono">${tekst}</span></p>`;
 const ikon = (a, s) => `<picture class="ikon"><source type="image/avif" srcset="/ikoner/${a.slug}-128.avif 1x,/ikoner/${a.slug}-320.avif 2x"><img src="/ikoner/${a.slug}-320.webp" alt="" width="${s}" height="${s}" loading="lazy" decoding="async"></picture>`;
