@@ -9,7 +9,7 @@ export const firma = {
   sted: 'Ål i Hallingdal',
 };
 
-// leder: 0 brun, 1 svart, 2 grå, 3 blå, 4 gul/grønn
+// leder: 0 svart (L1), 1 brun (L2), 2 grå (L3), 3 blå, 4 gul/grønn
 export const apper = [
   {
     slug: 'elektrikerhjelpen', gaarTil: 'Elektrikere og lærlinger', navn: 'Elektrikerhjelpen', kurs: 'K1', leder: 0, gruppe: 'Verktøy', tema: 'el',

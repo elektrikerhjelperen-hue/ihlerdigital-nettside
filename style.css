@@ -5,7 +5,7 @@
 
 :root{
   --papir:#e7e8e3;--flate:#f3f3ef;--blekk:#14161a;--dempet:#4c5057;--strek:#14161a2e;
-  --l1:#7a4a26;--l2:#14161a;--l3:#8a8d90;--n:#1c69be;--pe-g:#1e9a4b;--pe-y:#f4cb00;
+  --l1:#14161a;--l2:#7a4a26;--l3:#8a8d90;--n:#1c69be;--pe-g:#1e9a4b;--pe-y:#f4cb00;
   --lenke:currentColor;
   --gul:#ffc800;--paa-gul:#14161a;
   --stor:"Big Shoulders",Impact,"Arial Narrow",sans-serif;
@@ -16,7 +16,7 @@
 }
 @media (prefers-color-scheme:dark){:root{
   --papir:#101214;--flate:#191c1f;--blekk:#e9e9e2;--dempet:#a8acb0;--strek:#e9e9e22e;
-  --l1:#a86f42;--l2:#e9e9e2;--l3:#6f7377;--n:#3f8cdd;
+  --l1:#e9e9e2;--l2:#a86f42;--l3:#6f7377;--n:#3f8cdd;
 }}
 @media (min-width:820px){:root{--L:36px;--s:12px;--w:4px;--inn:128px;--hoyre:48px}}
 
@@ -103,13 +103,13 @@ tbody tr td:last-child{white-space:nowrap}
 
 /* Kurs-bånd */
 .kurs,.apphelt{position:relative;contain:paint;padding-block:clamp(44px,7vw,110px);background:var(--bg);color:var(--ink)}
-.el{--bg:var(--gul);--ink:#14161a;--blekk:#14161a;--l1:#7a4a26;--l2:#14161a;--l3:#5f6265;--n:#1457a3}
-.ga{--bg:#cfccc4;--ink:#1a1a18;--blekk:#1a1a18;--l1:#7a4a26;--l2:#1a1a18;--l3:#6d6f70;--n:#1457a3}
+.el{--bg:var(--gul);--ink:#14161a;--blekk:#14161a;--l1:#14161a;--l2:#7a4a26;--l3:#5f6265;--n:#1457a3}
+.ga{--bg:#cfccc4;--ink:#1a1a18;--blekk:#1a1a18;--l1:#1a1a18;--l2:#7a4a26;--l3:#6d6f70;--n:#1457a3}
 .hl{--bg:var(--flate);--ink:var(--blekk)}
-.tr{--bg:#3a2315;--ink:#fff3e0;--blekk:#fff3e0;--l1:#d59a63;--l2:#fff3e0;--l3:#a79a8c}
-.tl{--bg:#0d2b2b;--ink:#dcfbe9;--blekk:#dcfbe9;--l1:#c08a57;--l2:#dcfbe9;--l3:#8aa5a0}
+.tr{--bg:#3a2315;--ink:#fff3e0;--blekk:#fff3e0;--l1:#fff3e0;--l2:#d59a63;--l3:#a79a8c}
+.tl{--bg:#0d2b2b;--ink:#dcfbe9;--blekk:#dcfbe9;--l1:#dcfbe9;--l2:#c08a57;--l3:#8aa5a0}
 .tl .knapp{background:#4be3a8;color:#07211c}
-.bk{--bg:#1b2252;--ink:#fff;--blekk:#fff;--l1:#c08a57;--l2:#fff;--l3:#9aa2c0}
+.bk{--bg:#1b2252;--ink:#fff;--blekk:#fff;--l1:#fff;--l2:#c08a57;--l3:#9aa2c0}
 .sti{margin-bottom:14px}
 .kjempe{font:800 clamp(3.75rem,15.5vw,15rem)/.92 var(--stor);text-transform:uppercase;letter-spacing:-.005em}
 .kjempe span{display:block}
