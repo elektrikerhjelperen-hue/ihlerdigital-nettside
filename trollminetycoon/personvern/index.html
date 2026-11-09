@@ -205,7 +205,7 @@ function tegn(){
   spiss=fra+(spiss-fra)*(1-Math.pow(1-k,3));
  }
  b.forEach(function(x){
-  var t=Math.round(Math.min(Math.max(spiss-x.top-TRINN,-TRINN),x.h));
+  var t=spiss-x.top-TRINN;t=t>=x.h-.5?Math.ceil(x.h):Math.round(Math.max(t,-TRINN));
   if(t!==x.t){x.t=t;x.e.style.setProperty('--t',t+'px')}
  });
  p.forEach(function(x){
