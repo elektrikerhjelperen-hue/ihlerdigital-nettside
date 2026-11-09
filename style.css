@@ -238,3 +238,5 @@ tbody th a span{min-width:0;overflow-wrap:anywhere}
 .maalstrek span{white-space:nowrap}
 @media (max-width:640px){.maalstrek{font-size:.625rem}}
 .tl .stabel-2 .telefon:nth-child(2){margin-right:0}
+@media (max-width:640px){tbody th{font-size:1.125rem}tbody th a{gap:10px}tbody .ikon img{width:32px}}
+#h-oss{line-height:1.08}
