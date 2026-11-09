@@ -29,9 +29,12 @@ function forskyv(p, d) {
 const sti = (p) => 'M' + p.map((q) => q.join(' ')).join('L');
 function ledere(punkter, s) {
   const farger = ['l1', 'l2', 'l3', 'n'];
-  let ut = '';
-  farger.forEach((f, i) => { ut += `<path class="leder ${f}" style="--d:${i * 90}ms" pathLength="1" d="${sti(forskyv(punkter, i * s))}"/>`; });
+  const stier = farger.map((_, i) => sti(forskyv(punkter, i * s)));
   const pe = sti(forskyv(punkter, 4 * s));
+  // Konturene legges først, så ingen av dem havner over kjernen til en annen leder.
+  let ut = '';
+  [...stier, pe].forEach((d, i) => { ut += `<path class="leder kontur" style="--d:${i * 90}ms" pathLength="1" d="${d}"/>`; });
+  farger.forEach((f, i) => { ut += `<path class="leder ${f}" style="--d:${i * 90}ms" pathLength="1" d="${stier[i]}"/>`; });
   return ut + `<path class="leder pe" style="--d:360ms" pathLength="1" d="${pe}"/><path class="pe-gul" d="${pe}"/>`;
 }
 const PROFIL_STOR = [[3000,392],[2240,392],[2080,290],[1990,330],[1840,170],[1720,330],[1560,340],[1460,240],[1400,70],[1350,46],[1260,38],[1170,12],[1080,50],[960,44],[880,58],[820,84],[770,200],[690,226],[600,312],[400,342],[250,356],[130,362],[38,362],[38,560]];

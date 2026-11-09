@@ -27,11 +27,17 @@ Papir er kaldt tegnegrått, ikke varm krem. Blekk er nesten svart.
 |---|---|---|
 | Papir | `#E7E8E3` | `#101214` |
 | Blekk | `#14161A` | `#E9E9E2` |
-| L1 svart | `#14161A` | `#E9E9E2` |
-| L2 brun | `#7A4A26` | `#A86F42` |
-| L3 grå | `#8A8D90` | `#6F7377` |
-| N blå | `#1C69BE` | `#3F8CDD` |
-| PE | `#1E9A4B` / `#F4CB00` | samme |
+
+Lederne har samme kjernefarge overalt, i lys og mørk modus og på alle bånd:
+| Leder | Farge |
+|---|---|
+| L1 svart | `#14161A` |
+| L2 brun | `#7A4A26` |
+| L3 grå | `#8A8D90` |
+| N blå | `#1C69BE` |
+| PE | `#1E9A4B` / `#F4CB00` |
+
+Én leder er én farge hele veien, ellers ser det ut som to ledere eller feil fargekode. Mot mørk bakgrunn får alle lederne en lys kontur (`--kontur`, 1 px `#B4B8BC` på hver side) i stedet for en annen farge. På gult bånd har bare PE kontur, i svart.
 
 Hver app får et helt bånd i sin egen ekte farge: Elektrikerhjelpen signalgul, Garasjen betonggrå med malertape, spillene mørke. Gult brukes bare som flate med svart tekst, aldri som tekst på lyst.
 

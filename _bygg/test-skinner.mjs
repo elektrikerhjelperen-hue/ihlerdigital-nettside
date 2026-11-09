@@ -4,7 +4,8 @@
 //
 // Sjekker på alle sidetyper, sju bredder, lys og mørk:
 //  1. Ingen av de fem skinnene har avbrudd fra toppen av skinnefeltet til tittelfeltet (ekte piksler).
-//     PE må også synes på bakgrunn der gult forsvinner: da må konturen på begge sider være synlig.
+//     En leder i samme farge som bakgrunnen (L1 på mørkt, PE på gult) må ha synlig kontur på begge sider.
+//     L1 skal ha nøyaktig samme sorte kjerne fra topp til bunn, i begge modus og på alle bånd.
 //  2. Båndene ligger kant i kant, uten sprekker.
 //  3. Hver prikk sitter på sin egen skinne, og ingen prikk rører nabo-skinne eller nabo-avgreining.
 //  4. Samme pikselsjekk med tegne-animasjonen på, rullet helt ned (slutten av siden).
@@ -67,6 +68,7 @@ async function piksler({ data, m, skala, fra, til, offsetY }) {
   const px = (x, y) => g.getImageData(Math.round(x * skala), y, 1, 1).data;
   const lik = (a, b) => Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]) + Math.abs(a[2] - b[2]) < 40;
   const feil = [];
+  let annenL1 = null, annenY = 0;
   const top = Math.max(0, Math.ceil((fra - offsetY) * skala)), bunn = Math.min(bm.height, Math.floor((til - offsetY) * skala));
   for (let k = 0; k < 5; k++) {
     const x = m.L + m.s * k + m.w / 2 - 0.5 / skala;
@@ -74,14 +76,16 @@ async function piksler({ data, m, skala, fra, til, offsetY }) {
     for (let y = top; y < bunn; y++) {
       const bg = px(Math.max(0, m.L - 3), y), p = px(x, y);
       let brudd = lik(p, bg);
-      if (brudd && k === 4) { // PE i samme farge som bakgrunnen: konturen må holde lederen synlig
-        const v = px(m.L + m.s * 4 - 1, y), h = px(m.L + m.s * 4 + m.w, y);
+      if (k === 0 && !lik(p, [0x14, 0x16, 0x1a])) { annenL1 = [...p].slice(0, 3).join(','); annenY = y; }
+      if (brudd) { // Samme farge som bakgrunnen: konturen må holde lederen synlig
+        const v = px(m.L + m.s * k - 1, y), h = px(m.L + m.s * k + m.w, y);
         brudd = lik(v, bg) || lik(h, bg);
       }
       if (brudd) { if (!run) start = y; run++; if (run > verst) { verst = run; sted = start; } } else run = 0;
     }
     if (verst) feil.push(`skinne ${['L1', 'L2', 'L3', 'N', 'PE'][k]}: brudd ${verst / skala}px ved y=${Math.round(sted / skala + offsetY)}`);
   }
+  if (annenL1) feil.push(`L1 er ikke sort: rgb ${annenL1} ved y=${Math.round(annenY / skala + offsetY)}`);
   return feil;
 }
 
