@@ -1,0 +1,40 @@
+{
+"elektrikerhjelpen": {
+"kabelberegning": 2.1727,
+"borevinkel": 2.1727,
+"downlights": 2.1727,
+"kursfortegnelse": 2.1727,
+"romkart": 2.1727
+},
+"garasjen": {
+"forside": 2.1722,
+"jukselapp": 2.1722,
+"paminnelser": 2.1722,
+"logg": 2.1722,
+"tema": 2.1722
+},
+"totallylegit": {
+"kontor": 2.1722,
+"hovedkvarter": 2.1722,
+"samtale": 2.1741,
+"reisen": 2.1722
+},
+"trollminetycoon": {
+"hula": 2.1727,
+"jernfjellet": 2.1727,
+"dampdalen": 2.1727,
+"trollfest": 2.1727
+},
+"block-kingdom": {
+"kart": 2.1741,
+"brett": 2.1741,
+"hvelv": 2.1741,
+"slott": 2.1741
+},
+"handlelista": {
+"liste": 2.1741,
+"mork": 2.1741,
+"meny": 2.1741,
+"butikk": 2.1741
+}
+}
