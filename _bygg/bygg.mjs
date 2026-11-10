@@ -219,6 +219,7 @@ skriv('apper/index.html', HODE({ tittel: 'Apper – Ihler Digital', beskrivelse:
 ${kursBand(a.elektrikerhjelpen)}
 ${kursBand(a.garasjen)}
 ${benk(a.handlelista)}
+${benk(a.prosjektmappa)}
 ${fortegnelse(SPILL, { id: 'spill', leder: 2, klasse: 'spill', tittel: 'Spill', undertekst: 'Noe vi lager ved siden av verktøyene.' })}
 </div></main>
 ` + FOT('ID-002'));

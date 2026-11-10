@@ -8,6 +8,7 @@ EL = H+'Elektrikerhjelpen/natt/klar-for-appstore/skjermbilder/iphone/pm-lys-%s.p
 TR = H+'TrollMineTycoon/klar-for-appstore/appstore-skjermbilder/%s.png'
 BK = H+'BlockKingdom/natt/ide-runde/105-blockkingdom-forbedringer/skjermbilder/etter/%s.png'
 HL = H+'Handlelista/trinn4/%s.png'
+PM = H+'Prosjektmappa/skjermbilder/%s.png'
 TL = H+'TotallyLegit/natt/ide-runde/100-totallylegit-kvalitetsrunde/skjermbilder/%s.png'
 ID = {'ga':'6827586327','tl':'6820141470','el':'6795866616','tr':'6827335548'}
 tmp='/tmp/id-store'; os.makedirs(tmp,exist_ok=True)
@@ -29,10 +30,12 @@ skudd={
  'totallylegit':[('kontor',lambda:store('tl',0)),('hovedkvarter',lambda:store('tl',1)),('samtale',TL%'etter-samtale'),('reisen',lambda:store('tl',3))],
  'trollminetycoon':[('hula',TR%'01-trollhula-mannskap'),('jernfjellet',TR%'02-jernfjellet'),('dampdalen',TR%'03-dampdalen'),('trollfest',TR%'04-gylne-troll-trollfest')],
  'block-kingdom':[('kart',BK%'c2-kart'),('brett',BK%'c1-daily-spill'),('hvelv',BK%'c5-heist'),('slott',BK%'c3-slott')],
+ 'prosjektmappa':[('etasjekart',PM%'trinn7/1-etasjekart'),('lag',PM%'trinn-4/1-el-rom-med-lag'),('lukking',PM%'trinn-5/4-vegg-klar'),('kunde',PM%'trinn11/1-gi-til-kunde'),('pdf',PM%'trinn7/3-forhandsvisning')],
  'handlelista':[('liste',HL%'1-gruppert-lys'),('mork',HL%'1-gruppert-mork'),('meny',HL%'3-meny-lys'),('butikk',HL%'4-butikkrekkefolge-lys')],
 }
 ikoner={'elektrikerhjelpen':lambda:icon('el'),'garasjen':lambda:icon('ga'),'totallylegit':lambda:icon('tl'),'trollminetycoon':lambda:icon('tr'),
- 'block-kingdom':A+'BlockKingdom/App/Assets.xcassets/AppIcon.appiconset/icon-1024.png','handlelista':A+'Handlelista/App/Assets.xcassets/AppIcon.appiconset/AppIcon.png'}
+ 'block-kingdom':A+'BlockKingdom/App/Assets.xcassets/AppIcon.appiconset/icon-1024.png','handlelista':A+'Handlelista/App/Assets.xcassets/AppIcon.appiconset/AppIcon.png',
+ 'prosjektmappa':A+'Prosjektmappa/App/Assets.xcassets/AppIcon.appiconset/ikon-1024.png'}
 def lagre(im,base):
     im.save(base+'.avif',quality=55,speed=4)
     im.save(base+'.webp',quality=78,method=6)

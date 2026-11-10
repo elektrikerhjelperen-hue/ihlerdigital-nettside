@@ -134,6 +134,7 @@ tbody tr td:last-child{white-space:nowrap}
 .tl{--bg:#0d2b2b;--ink:#dcfbe9;--blekk:#dcfbe9}
 .tl .knapp{background:#4be3a8;color:#07211c}
 .bk{--bg:#1b2252;--ink:#fff;--blekk:#fff}
+.pm{--bg:#17525c;--ink:#eef6f5;--blekk:#eef6f5;--kontur:var(--lys-kant);--pe-kant:var(--lys-kant)}
 .sti{margin-bottom:14px}
 .kjempe{font:800 clamp(3.75rem,15.5vw,15rem)/.92 var(--stor);text-transform:uppercase;letter-spacing:-.005em}
 .kjempe span{display:block}
