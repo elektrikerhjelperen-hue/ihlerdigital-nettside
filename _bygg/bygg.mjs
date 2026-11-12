@@ -3,6 +3,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
+import os from 'node:os';
 import { firma, apper } from './data.mjs';
 
 const ROT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -303,3 +305,10 @@ skriv('404.html', HODE({ tittel: 'Fant ikke siden – Ihler Digital', beskrivels
 </section></div></main>
 ` + FOT('ID-404'));
 console.log('Bygget', apper.length, 'apper');
+
+// ---- Git-vakt: ingenting fra NEK 400 / Montørhåndboka på nettsiden (sjekkes også av pre-push) ----
+const vakt = path.join(os.homedir(), 'Morgenbrief/git-vakt/sjekk.sh');
+if (fs.existsSync(vakt)) {
+  const r = spawnSync(vakt, [path.join(path.dirname(fileURLToPath(import.meta.url)), '..')], { stdio: 'inherit' });
+  if (r.status !== 0) { console.error('Ikke publiser: rett funnene over først.'); process.exit(1); }
+}
