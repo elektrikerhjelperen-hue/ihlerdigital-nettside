@@ -67,7 +67,7 @@ export const apper = [
     kort: 'Felles handleliste for husstanden.',
     ingress: 'Én liste for hele husstanden, sortert i den rekkefølgen du går gjennom butikken.',
     tittel: 'Felles liste, riktig rekkefølge',
-    pris: 'Blir gratis. Ingen reklame.',
+    pris: 'Gratis. Ingen reklame.',
     hvem: 'For dem som handler for flere enn seg selv, og som er lei av å gå tilbake etter melka.',
     hva: [
       ['Butikkrekkefølge', 'Dra kategoriene i den rekkefølgen du går gjennom butikken. Gjelder alle lister.'],
