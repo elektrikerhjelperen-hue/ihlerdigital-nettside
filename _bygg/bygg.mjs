@@ -102,7 +102,7 @@ const KOBLING = '<span class="tilkobling" aria-hidden="true"><i></i><i></i><i></
 const uttak = (i) => `data-leder="${i}" style="--i:${i}"`;
 const kursLinje = (a, tekst) => `<p class="kursnr" ${uttak(a.leder)}>${KOBLING}<b>${a.kurs}</b> <span class="mono">${tekst}</span></p>`;
 const ikon = (a, s) => `<picture class="ikon"><source type="image/avif" srcset="/ikoner/${a.slug}-128.avif 1x,/ikoner/${a.slug}-320.avif 2x"><img src="/ikoner/${a.slug}-320.webp" alt="" width="${s}" height="${s}" loading="lazy" decoding="async"></picture>`;
-const storeKnapp = (a, t = 'Hent i App Store') => a.store ? `<a class="knapp" href="${a.store}">${t}</a>` : `<span class="merkelapp">Under arbeid</span>`;
+const storeKnapp = (a, t = 'Hent i App Store') => a.store ? `<a class="knapp" href="${a.store}">${t}</a>${a.play ? `<a class="knapp" href="${a.play}">Hent på Google Play</a>` : ''}` : `<span class="merkelapp">Under arbeid</span>`;
 const navnH = (a) => a.deler.map((d) => `<span>${d}</span>`).join(' ');
 
 // ---- Deler til forsiden og appoversikten ---------------------------------------
@@ -115,7 +115,7 @@ const fortegnelse = (liste, o) => `<section class="fortegnelse innrykk ${o.klass
 <table>
 <thead><tr><th scope="col">Kurs</th><th scope="col">Navn</th><th scope="col" class="skjul-smal">For hvem</th><th scope="col">Status</th></tr></thead>
 <tbody>
-${liste.map((x) => `<tr><td class="mono rad-kurs" ${uttak(x.leder)}>${KOBLING}${x.kurs}</td><th scope="row"><a href="/${x.slug}/">${ikon(x, 40)}<span>${x.navn}</span></a></th><td class="skjul-smal">${x.gaarTil}</td><td class="mono">${x.underArbeid ? 'Under arbeid' : 'I App Store'}</td></tr>`).join('\n')}
+${liste.map((x) => `<tr><td class="mono rad-kurs" ${uttak(x.leder)}>${KOBLING}${x.kurs}</td><th scope="row"><a href="/${x.slug}/">${ikon(x, 40)}<span>${x.navn}</span></a></th><td class="skjul-smal">${x.gaarTil}</td><td class="mono">${x.underArbeid ? 'Under arbeid' : (x.play ? 'App Store og Google Play' : 'I App Store')}</td></tr>`).join('\n')}
 </tbody></table>
 ${o.etter || ''}
 </section>`;
@@ -270,7 +270,7 @@ ${ikon(ap, 112)}
 </section>
 ${hvisKunde}
 <section class="innrykk avsender" aria-labelledby="h-avs"><h2 class="mellom" id="h-avs">${ap.navn} er laget av Ihler Digital</h2><p>Vi utvikler og vedlikeholder appen selv, fra Ål i Hallingdal.</p><p class="handling"><a class="les" href="/#oss">Om selskapet<span aria-hidden="true"> →</span></a></p></section>
-<section class="innrykk underlenker"><nav aria-label="${ap.navn}">${harPersonvern(ap) ? `<a href="/${ap.slug}/personvern/">Personvern</a>` : ''}${ap.store ? `<a href="${ap.store}">App Store</a>` : ''}<a href="/apper/">Alle appene</a></nav></section>
+<section class="innrykk underlenker"><nav aria-label="${ap.navn}">${harPersonvern(ap) ? `<a href="/${ap.slug}/personvern/">Personvern</a>` : ''}${ap.store ? `<a href="${ap.store}">App Store</a>` : ''}${ap.play ? `<a href="${ap.play}">Google Play</a>` : ''}<a href="/apper/">Alle appene</a></nav></section>
 </div></main>
 ` + FOT(`ID-${ap.kurs.slice(1)}00`);
 }

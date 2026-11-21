@@ -15,6 +15,7 @@ export const apper = [
     slug: 'elektrikerhjelpen', gaarTil: 'Elektrikere og lærlinger', navn: 'Elektrikerhjelpen', kurs: 'K1', leder: 0, gruppe: 'Verktøy', tema: 'el',
     deler: ['Elektriker-', 'hjelpen'],
     store: 'https://apps.apple.com/no/app/elektrikerhjelpen/id6795866616',
+    play: 'https://play.google.com/store/apps/details?id=com.Elektrikerhjelpen',
     kort: 'Kalkulatorer, oppslag og dokumentasjon for elektrikere.',
     ingress: '22 verktøy: tverrsnitt, vern og spenningsfall etter NEK 400, borevinkel, kursfortegnelse og Bolignormen. Det du ellers slår opp i tre permer og en PDF.',
     tittel: 'Regn det ut der du står',
@@ -23,7 +24,7 @@ export const apper = [
     hva: [
       ['Kabelberegning', 'Tverrsnitt, vern, strømføringsevne og spenningsfall. Du får ett svar og ser hvorfor.'],
       ['Borevinkel', 'Legg telefonen på boret. Skjermen blir grønn når du treffer riktig høyde på andre siden av veggen.'],
-      ['Kursfortegnelse', 'Skann den gamle med kameraet eller fyll ut selv. Felt skanneren er usikker på, merkes gult. Lag PDF.'],
+      ['Kursfortegnelse', 'Skann den gamle med kameraet eller fyll ut selv. Felt skanneren er usikker på, merkes gult. Lag PDF. Skanning er foreløpig bare på iPhone.'],
       ['Downlights', 'Antall, senteravstand og avstand fra vegg, med skisse av rommet.'],
       ['Hovedsikring og belastning', 'Effektbehov med samtidighetsfaktor, og om lastene holder seg under 80 % av kabelens Iz.'],
       ['Oppslag', 'Våtromssoner, IP-grader, vernkarakteristikk og forlegningsmåter A1–E.'],
