@@ -4,7 +4,8 @@ import json, os, sys, urllib.request
 from PIL import Image
 H = os.path.expanduser('~/Apper-filer/')
 A = os.path.expanduser('~/Apper/')
-EL = H+'Elektrikerhjelpen/natt/klar-for-appstore/skjermbilder/iphone/pm-lys-%s.png'
+# Elektrikerhjelpen 3.9: ferske råbilder fra jobb 583 (eksempeldata), rensket i Reklame-jobb 589
+EL = H+'Reklame/Elektrikerhjelpen/lansering-3.9/nettside/raa/%s.png'
 TR = H+'TrollMineTycoon/klar-for-appstore/appstore-skjermbilder/%s.png'
 BK = H+'BlockKingdom/natt/ide-runde/105-blockkingdom-forbedringer/skjermbilder/etter/%s.png'
 HL = H+'Handlelista/trinn4/%s.png'
@@ -25,7 +26,7 @@ def icon(k):
     if not os.path.exists(p): store(k,0); urllib.request.urlretrieve(info[k]['artworkUrl512'].replace('512x512bb','1024x1024bb'),p)
     return p
 skudd={
- 'elektrikerhjelpen':[('kabelberegning',EL%'kabelberegning'),('borevinkel',EL%'borevinkel'),('downlights',EL%'nedlysplassering'),('kursfortegnelse',EL%'kursfortegnelse'),('romkart',EL%'romkart')],
+ 'elektrikerhjelpen':[(n,EL%n) for n in ('romkart','styrestrom','verktoy','downlights','kabelberegning','kursfortegnelse')],
  'garasjen':[('forside',lambda:store('ga',0)),('jukselapp',lambda:store('ga',1)),('paminnelser',lambda:store('ga',2)),('logg',lambda:store('ga',4)),('tema',lambda:store('ga',6))],
  'totallylegit':[('kontor',lambda:store('tl',0)),('hovedkvarter',lambda:store('tl',1)),('samtale',TL%'etter-samtale'),('reisen',lambda:store('tl',3))],
  'trollminetycoon':[('hula',TR%'01-trollhula-mannskap'),('jernfjellet',TR%'02-jernfjellet'),('dampdalen',TR%'03-dampdalen'),('trollfest',TR%'04-gylne-troll-trollfest')],
@@ -39,8 +40,11 @@ ikoner={'elektrikerhjelpen':lambda:icon('el'),'garasjen':lambda:icon('ga'),'tota
 def lagre(im,base):
     im.save(base+'.avif',quality=55,speed=4)
     im.save(base+'.webp',quality=78,method=6)
-mal={}
+# BARE=<app> lager bare den appens bilder (og beholder resten av bildemal.json og ikonene)
+BARE=os.environ.get('BARE')
+mal=json.load(open('_bygg/bildemal.json')) if BARE else {}
 for app,lst in skudd.items():
+    if BARE and app!=BARE: continue
     os.makedirs(f'bilder/{app}',exist_ok=True)
     mal[app]={}
     for n,src in lst:
@@ -51,7 +55,7 @@ for app,lst in skudd.items():
             lagre(im.resize((w,h),Image.LANCZOS),f'bilder/{app}/{n}-{w}')
         mal[app][n]=round(im.height/im.width,4)
 os.makedirs('ikoner',exist_ok=True)
-for app,src in ikoner.items():
+for app,src in ([] if BARE else ikoner.items()):
     src=src() if callable(src) else src
     im=Image.open(src).convert('RGB')
     for s in (128,320):

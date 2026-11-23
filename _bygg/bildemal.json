@@ -1,10 +1,11 @@
 {
 "elektrikerhjelpen": {
-"kabelberegning": 2.1727,
-"borevinkel": 2.1727,
+"romkart": 2.1727,
+"styrestrom": 2.1727,
+"verktoy": 2.1727,
 "downlights": 2.1727,
-"kursfortegnelse": 2.1727,
-"romkart": 2.1727
+"kabelberegning": 2.1727,
+"kursfortegnelse": 2.1727
 },
 "garasjen": {
 "forside": 2.1722,
