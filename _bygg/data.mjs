@@ -19,7 +19,12 @@ export const apper = [
     kort: 'Kalkulatorer, oppslag og dokumentasjon for elektrikere.',
     ingress: 'Tverrsnitt, vern og spenningsfall etter NEK 400, romkart, kursfortegnelse og koblingsskjema. Nytt i iOS 3.9 og Android 1.2.5: styrestrøm og hovedstrøm, fire nye verktøy og downlights som justeres samlet.',
     tittel: 'Regn det ut der du står',
-    pris: 'Gratis å laste ned. Pro er et månedlig abonnement, med én måned gratis prøvetid.',
+    pris: 'Gratis å laste ned. Pro og Prosjekt er abonnement med gratis prøveperiode.',
+    // Fra betalingsmuren i appen (App/Betalingsmur.swift). Ingen priser her: de står i appen.
+    abonnement: [
+      ['Pro', 'Alle verktøy og kalkulatorer, romkart og ubegrenset med kunder, kursfortegnelser og bilder.'],
+      ['Prosjekt', 'Alt i Pro, og hele bygget: tegning fra utbygger under kartet, oversikt over etasjer, materialliste og samlet PDF for bygget.'],
+    ],
     hvem: 'For elektrikere og lærlinger som vil regne det ut der de står, og levere ryddig dokumentasjon når jobben er ferdig. Beregningene er veiledende og erstatter ikke installatørens egen vurdering og kontroll.',
     hva: [
       ['Styrestrøm og hovedstrøm', 'Nytt: koblingsskjema fra mal, for eksempel direktestart, vendestart og stjerne–trekant. Trykk på et trinn for å endre, og lag PDF.'],
@@ -85,28 +90,14 @@ export const apper = [
     ],
   },
   {
-    slug: 'prosjektmappa', gaarTil: 'Håndverkere på småjobber', navn: 'Prosjektmappa', kurs: 'K7', leder: 3, gruppe: 'Verktøy', tema: 'pm',
-    deler: ['Prosjekt-', 'mappa'], underArbeid: true,
-    kort: 'Felles mappe for fagene på småjobben: rom, lag per fag og bilder før veggen lukkes.',
-    ingress: 'Rom, et lag per fag og bilde av hver vegg før den lukkes. Kunden får alt samlet i én PDF.',
-    tittel: 'Hva ligger bak veggen?',
-    pris: 'Under testing. Ikke i App Store ennå.',
-    hvem: 'For elektriker, rørlegger, snekker og membranlegger på bad, oppussing og tilbygg, der ingen byggeleder holder tegningen. Plasseringene er slik de er tegnet inn, ikke oppmålt.',
-    hva: [
-      ['Rom', 'Skann rommet med LiDAR, lag det for hånd med mål, eller tegn det oppå en tegning fra utbygger.'],
-      ['Ett lag per fag', 'Hvert fag legger inn sine merker. Ingen kan endre eller slette det et annet fag har lagt inn.'],
-      ['Klar til lukking?', 'Bilde av hver vegg, gulv og tak med høyde fra gulv og avstand fra hjørne, før den lukkes.'],
-      ['Deling med iCloud', 'Inviter de andre fagene. Fag uten iPhone får PDF og bilder i stedet.'],
-      ['Gi til kunde', 'Én PDF med alle fag, og lesetilgang i appen hvis kunden har iPhone. Du ser hva som følger med før du sender.'],
-      ['Bare ditt', 'Ingen konto og ingen egen server. Dataene ligger på telefonen og i din egen iCloud. Ingen sporing.'],
-    ],
-    bilder: [
-      ['etasjekart', 'Etasjekart med bad og gang', 'Etasjekart'],
-      ['lag', 'Rom med elektrikerens merker og andre fag dempet', 'Lag per fag'],
-      ['lukking', 'Vegg dokumentert med bilde og mål før lukking', 'Klar til lukking'],
-      ['kunde', 'Gi til kunde med hva som følger med', 'Gi til kunde'],
-      ['pdf', 'Forhåndsvisning av PDF til kunden', 'PDF til kunden'],
-    ],
+    // Ikke avslør detaljer ennå (Kristian 26.11.2026): bare konseptet, ingen skjermbilder, funksjoner eller dato.
+    slug: 'prosjektmappa', gaarTil: 'Fagfolk og bedrifter på samme bygg', navn: 'Prosjektmappa', kurs: 'K7', leder: 3, gruppe: 'Verktøy', tema: 'pm',
+    deler: ['Prosjekt-', 'mappa'], underArbeid: true, kommer: true,
+    kort: 'Ett felles prosjekt for alle fagene på samme bygg. Kommer.',
+    ingress: 'Ett felles prosjekt for alle fagene på samme bygg. Delte plantegninger og kart, og en bedrift som styrer hvem som gjør hva.',
+    tittel: 'Ett bygg, alle fag',
+    pris: 'Under arbeid. Ikke i App Store ennå.',
+    hva: [], bilder: [],
   },
   {
     slug: 'trollminetycoon', gaarTil: 'Gruvesjefer', navn: 'Troll Mine Tycoon', kurs: 'K4', leder: 0, gruppe: 'Spill', tema: 'tr',

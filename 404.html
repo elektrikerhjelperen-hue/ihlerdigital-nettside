@@ -13,7 +13,6 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nb_NO">
 <meta property="og:image" content="https://ihlerdigital.no/og.jpg">
-<script>if(matchMedia('(prefers-reduced-motion:no-preference)').matches)document.documentElement.classList.add('tegn')</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonter/bigshoulders.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonter/schibsted.woff2" as="font" type="font/woff2" crossorigin>
@@ -22,17 +21,17 @@
 <body class="dok">
 <a class="hopp" href="#innhold">Hopp til innholdet</a>
 <header class="topp">
-<a class="merke" href="/" aria-label="Ihler Digital, til forsiden"><span class="merke-leder" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Ihler Digital</a>
-<nav aria-label="Hovedmeny"><a href="/#oss">Om oss</a><a href="/apper/">Apper</a><a href="/#kontakt">Kontakt</a></nav>
+<a class="merke" href="/" aria-label="Ihler Digital, til forsiden"><svg class="merke-fjell" viewBox="0 0 44 18" width="44" height="18" aria-hidden="true"><path d="M0 16H7L10 10L13 9.5L15 4L17 3L20 1.5L23 4L26 4.5L28 8L31 13H44"/><path class="merke-kote" d="M4 17.5H9L12 13L15 12.5L17 8.5L20 7L23 8.5L26 9L28 12L30 15.5H40"/></svg>Ihler Digital</a>
+<nav aria-label="Hovedmeny"><a href="/elektrikerhjelpen/">Elektrikerhjelpen</a><a href="/#prosjektmappa">Prosjektmappa</a><a href="/#kontakt">Kontakt</a></nav>
 </header>
-<main id="innhold"><div class="skinnefelt"><section class="innrykk brudd">
+<main id="innhold"><div class="ark"><section class="innrykk brudd">
 <p class="sti mono">Feilkode 404</p>
-<h1 class="kjempe">Brudd på kursen</h1>
+<h1 class="kjempe">Ikke på tegningen</h1>
 <p class="ingress">Adressen går ikke fram til noe her. Kanskje den er flyttet.</p>
-<p><a class="knapp" href="/">Til forsiden</a></p>
+<p class="handling"><a class="knapp" href="/">Til forsiden</a><a class="les" href="/apper/">Alle apper og personvern</a></p>
 </section></div></main>
-<footer class="tittelfelt"><span class="jord" aria-hidden="true"></span>
-<div class="tf-merke"><span class="tf-navn">Ihler Digital</span><span class="mono">Programvare fra Ål i Hallingdal</span></div>
+<footer class="tittelfelt">
+<div class="tf-merke"><span class="tf-navn">Ihler Digital</span><span class="mono">Planlegging og dokumentasjon for fagfolk</span></div>
 <dl class="tf-felt">
 <div><dt>Selskap</dt><dd>Varmepumpebrødrene AS</dd></div>
 <div><dt>Org.nr</dt><dd>935436389</dd></div>
@@ -42,49 +41,9 @@
 <div class="tf-brei"><dt>Kontakt</dt><dd><a href="mailto:support@ihlerdigital.no">support@ihlerdigital.no</a></dd></div>
 <div><dt>Tegn.nr</dt><dd>ID-404</dd></div>
 <div><dt>Målestokk</dt><dd>Ikke målriktig</dd></div>
-<div><dt>Rev.</dt><dd>23.11.2026</dd></div>
+<div><dt>Rev.</dt><dd>25.11.2026</dd></div>
+<div><dt>Andre apper</dt><dd><a href="/apper/">Alle apper og personvern</a></dd></div>
 </dl>
 </footer>
-<script>(function(){
-var d=document,r=d.documentElement,TRINN=56,
- B=[].slice.call(d.querySelectorAll('.skinnefelt>*')),
- P=[].slice.call(d.querySelectorAll('.skinnefelt .tilkobling,.jord'));
-if(!r.classList.contains('tegn')||!B.length)return;
-var b=[],p=[],slutt=0,fra=0,bredde=innerWidth,ko=0,t0=0,
- forsinkelse=d.querySelector('.fjell')?1400:0,INTRO=900,ferdig=false;
-function mal(){
- var y=scrollY;
- b=B.map(function(e,i){var q=e.getBoundingClientRect();return{e:e,top:q.top+y,h:q.height,t:b[i]?b[i].t:null}});
- p=P.map(function(e,i){var q=e.getBoundingClientRect();return{e:e,y:q.top+q.height/2+y,paa:p[i]?p[i].paa:null}});
- fra=b[0].top;slutt=b[b.length-1].top+b[b.length-1].h;
- tegn();
-}
-function tegn(){
- ko=0;
- var vh=innerHeight,maks=Math.max(r.scrollHeight-vh,0),s=Math.min(Math.max(scrollY,0),maks),
-  mal0=.72*vh,malS=slutt+TRINN-maks,a=Math.min(Math.max((s-(maks-vh))/vh,0),1),
-  spiss=s+mal0+(malS-mal0)*a;
- if(!ferdig){
-  var k=Math.min(Math.max((performance.now()-t0-forsinkelse)/INTRO,0),1);
-  if(k>=1)ferdig=true;else planlegg();
-  spiss=fra+(spiss-fra)*(1-Math.pow(1-k,3));
- }
- b.forEach(function(x){
-  var t=spiss-x.top-TRINN;t=t>=x.h-.5?Math.ceil(x.h):Math.round(Math.max(t,-TRINN));
-  if(t!==x.t){x.t=t;x.e.style.setProperty('--t',t+'px')}
- });
- p.forEach(function(x){
-  var paa=spiss>=Math.min(x.y+TRINN,slutt+TRINN);
-  if(paa!==x.paa){x.paa=paa;x.e.classList.toggle('paa',paa)}
- });
-}
-function planlegg(){if(!ko)ko=requestAnimationFrame(tegn)}
-t0=performance.now();
-mal();
-addEventListener('scroll',planlegg,{passive:true});
-addEventListener('pageshow',planlegg);
-addEventListener('resize',function(){if(innerWidth!==bredde){bredde=innerWidth;mal()}else planlegg()});
-if(window.ResizeObserver)new ResizeObserver(mal).observe(d.body);
-})();</script>
 </body>
 </html>

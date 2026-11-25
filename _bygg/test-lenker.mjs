@@ -12,9 +12,9 @@
 //  5. En ukjent adresse gir 404 med 404-siden, og 404-siden har lenke til forsiden.
 import fs from 'node:fs';
 import path from 'node:path';
-import http from 'node:http';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { start } from './server.mjs';
 
 const ROT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const GRUNN = path.join(ROT, '_bygg/lenker-grunnlinje.json');
@@ -50,23 +50,9 @@ if (process.argv[2] === 'grunnlinje') {
   process.exit(0);
 }
 
-// ---- Lokal server som oppfører seg som GitHub Pages ----
-const TYPER = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.txt': 'text/plain', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.webp': 'image/webp', '.avif': 'image/avif' };
-function server() {
-  return http.createServer((req, res) => {
-    let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
-    let f = path.join(ROT, p);
-    if (!f.startsWith(ROT) || p.includes('/_bygg/') || p.includes('/.git')) f = '';
-    if (f && fs.existsSync(f) && fs.statSync(f).isDirectory()) f = path.join(f, 'index.html');
-    if (f && fs.existsSync(f)) { res.writeHead(200, { 'content-type': TYPER[path.extname(f)] || 'application/octet-stream' }); res.end(fs.readFileSync(f)); return; }
-    res.writeHead(404, { 'content-type': TYPER['.html'] }); res.end(fs.readFileSync(path.join(ROT, '404.html')));
-  });
-}
-
 const g = JSON.parse(fs.readFileSync(GRUNN, 'utf8'));
-const srv = server().listen(0);
-await new Promise((r) => srv.once('listening', r));
-const base = process.env.BASE || `http://localhost:${srv.address().port}`;
+const { srv, base: lokal } = await start();
+const base = process.env.BASE || lokal;
 const feil = [];
 const hent = async (a) => { const r = await fetch(base + a, { redirect: 'manual' }); return { status: r.status, tekst: await r.text() }; };
 let ok = 0;
