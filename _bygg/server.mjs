@@ -11,7 +11,10 @@ export async function start() {
     const p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
     let f = path.join(ROT, p);
     if (!f.startsWith(ROT) || p.includes('/_bygg/') || p.includes('/.git')) f = '';
-    if (f && fs.existsSync(f) && fs.statSync(f).isDirectory()) f = path.join(f, 'index.html');
+    if (f && fs.existsSync(f) && fs.statSync(f).isDirectory()) {
+      if (!p.endsWith('/')) { res.writeHead(301, { location: p + '/' }); res.end(); return; }
+      f = path.join(f, 'index.html');
+    }
     if (f && fs.existsSync(f)) { res.writeHead(200, { 'content-type': TYPER[path.extname(f)] || 'application/octet-stream' }); res.end(fs.readFileSync(f)); return; }
     res.writeHead(404, { 'content-type': TYPER['.html'] }); res.end(fs.readFileSync(path.join(ROT, '404.html')));
   }).listen(0);

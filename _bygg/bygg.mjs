@@ -234,7 +234,7 @@ ${abonnement(ap)}
 <div class="rekke" tabindex="0" role="group" aria-label="Skjermbilder">${ap.bilder.map((_, i) => telefon(ap, i, '(min-width: 900px) 300px, 62vw', i > 1)).join('')}</div>
 </section>
 <section class="innrykk hva" aria-labelledby="h-hva">
-<h2 class="mellom" id="h-hva">${akse('B')}${ap.tittel}</h2>
+<div class="hva-venstre"><h2 class="mellom" id="h-hva">${akse('B')}${ap.tittel}</h2>${ap.slug === 'elektrikerhjelpen' ? `<figure class="hva-tegning">${trinnSvg(TRINN[2][3], 'Plantegning av en leilighet med stikk, lys og rør tegnet inn')}<figcaption class="mono">Romkart · stikk, lys og rør · skjematisk</figcaption></figure>` : ''}</div>
 <ol class="hva-liste">${ap.hva.map(([t, x], i) => `<li data-nr="${String(i + 1).padStart(2, '0')}"><h3>${t}</h3><p>${x}</p></li>`).join('')}</ol>
 <div class="hvem"><h2>Hvem den er for</h2><p class="ingress">${ap.hvem}</p></div>
 </section>

@@ -18,6 +18,7 @@ import { start } from './server.mjs';
 
 const ROT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const GRUNN = path.join(ROT, '_bygg/lenker-grunnlinje.json');
+// Grunnlinja er fryst 26.11.2026 (jobb 660). Ikke lag den på nytt etter at main er oppdatert.
 const REFS = ['origin/main', '03419a2'];
 const BUTIKK = /https:\/\/(apps\.apple\.com|play\.google\.com)\/[^"'\s<>]+/g;
 const EH = /elektrikerhjelpen|com\.Elektrikerhjelpen|id6795866616/i;
@@ -84,8 +85,16 @@ const forside = butikklenker((await hent('/')).tekst);
 for (const u of [...gamleAlle].filter((u) => EH.test(u))) if (!forside.includes(u)) feil.push(`/: mangler ${u}`);
 
 const ukjent = await hent('/finnes-ikke-' + Date.now() + '/');
-if (ukjent.status !== 404 || !ukjent.tekst.includes('href="/"')) feil.push(`ukjent adresse: status ${ukjent.status} eller mangler lenke til forsiden`);
+if (ukjent.status !== 404 || !ukjent.tekst.includes('Feilkode 404') || !ukjent.tekst.includes('href="/"')) feil.push(`ukjent adresse: status ${ukjent.status} eller mangler lenke til forsiden`);
 
+// Adresser uten skråstrek til slutt skal sendes videre (GitHub Pages gir 301).
+for (const a of g.filer.filter((x) => x.endsWith('/') && x !== '/')) {
+  const r = await fetch(base + a.slice(0, -1), { redirect: 'manual' });
+  if (r.status !== 301 || !r.headers.get('location')?.endsWith(a)) feil.push(`${a.slice(0, -1)}: ikke videresendt (status ${r.status})`);
+}
+// Filer GitHub Pages trenger for domenet og for at _bygg ikke behandles av Jekyll.
+for (const f of ['CNAME', '.nojekyll']) if (!fs.existsSync(path.join(ROT, f))) feil.push(`${f} mangler`);
+if (fs.existsSync(path.join(ROT, 'CNAME')) && fs.readFileSync(path.join(ROT, 'CNAME'), 'utf8').trim() !== 'ihlerdigital.no') feil.push('CNAME er endret');
 srv.close();
 console.log(`${ok}/${g.filer.length} gamle adresser svarer 200. Butikklenker sjekket på ${Object.keys(g.sider).length} sider.`);
 console.log('Elektrikerhjelpen-lenker før:', [...gamleAlle].filter((u) => EH.test(u)).join(' '));

@@ -13,7 +13,7 @@ for (const k of kand) { try { ({ chromium } = createRequire(k + '/node_modules/'
 if (!chromium) throw new Error('Fant ikke playwright-core. Sett PLAYWRIGHT_DIR.');
 
 const ut = process.argv[2];
-const SIDER = ['/', '/elektrikerhjelpen/', '/prosjektmappa/', '/apper/', '/elektrikerhjelpen/personvern/', '/garasjen/', '/matplanlegger/personvern/', '/404.html', '/totallylegit/'];
+const SIDER = Object.keys(JSON.parse(fs.readFileSync(new URL('./lenker-grunnlinje.json', import.meta.url), 'utf8')).sider);
 const BREDDER = [320, 390, 768, 1024, 1440];
 const BILDER = { '/': 'forside', '/elektrikerhjelpen/': 'elektrikerhjelpen', '/prosjektmappa/': 'prosjektmappa', '/apper/': 'alle-apper', '/404.html': '404' };
 

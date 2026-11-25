@@ -24,8 +24,8 @@ export function fjell(stor) {
     ? `<g class="t-maal t-inn" style="--d:1500ms"><path d="M1170 4V-34M1162 -26H1300"/><text x="1180" y="-40">Folarskardnuten +1933</text><path class="t-kote-pil" d="M1164 -6L1170 4L1176 -6Z"/>
 <path d="M2240 392V430M2240 422H2380"/><text x="2250" y="446">Ål +440</text>
 <text class="t-snitt" x="60" y="470">Snitt A–A · Hallingskarvet · skjematisk</text></g>`
-    : `<g class="t-maal t-inn" style="--d:1500ms"><path d="M262 44V14M256 20H330"/><text x="268" y="10">+1933</text></g>`;
-  return `<svg class="fjell-${stor ? 'stor' : 'liten'}" width="${w}" height="${h + (stor ? 60 : 10)}" viewBox="0 ${stor ? -60 : -10} ${w} ${h + (stor ? 60 : 10)}" aria-hidden="true">
+    : `<g class="t-maal t-inn" style="--d:1500ms"><path d="M262 44V0M256 6H400"/><text x="268" y="-4">Folarskardnuten +1933</text><path d="M470 212V240M470 234H540"/><text x="476" y="230">Ål +440</text></g>`;
+  return `<svg class="fjell-${stor ? 'stor' : 'liten'}" width="${w}" height="${h + (stor ? 60 : 10)}" viewBox="0 ${stor ? -60 : -24} ${stor ? w : 560} ${h + (stor ? 60 : 24)}" aria-hidden="true">
 ${kurveSvg}<path class="t-profil" pathLength="1" d="${d(p)}"/>${maal}</svg>`;
 }
 
@@ -79,15 +79,18 @@ export const TRINN = [
   ['03', 'Fag', 'Stikk, lys, rør og vegger legges inn der de skal være.', fag],
   ['04', 'Dokumentasjon', 'Det ferdige blir en PDF med mål og plassering, klar til kunden.', dok],
 ];
-export const trinnSvg = (f, tittel) => `<svg viewBox="0 0 240 200" role="img" aria-label="${tittel}">${f()}</svg>`;
+export const trinnSvg = (f, tittel) => `<svg viewBox="0 0 240 200" role="img" aria-label="${tittel.replace(/&/g, '&amp;').replace(/"/g, '&quot;')}">${f()}</svg>`;
 
 // ---- Prosjektmappa: snitt av et bygg, stiplet fordi det ikke er bygget ennå ----------
-export const SNITT = `<svg class="snitt" viewBox="0 0 340 230" role="img" aria-label="Snitt av et hus i to etasjer, stiplet fordi det ikke er bygget ennå.">
-<path class="t-terreng" d="M0 186H340"/><path class="t-skravur-linje" d="M6 194l10-8M26 194l10-8M46 194l10-8M66 194l10-8M86 194l10-8M106 194l10-8M126 194l10-8M146 194l10-8M166 194l10-8M186 194l10-8M206 194l10-8M226 194l10-8M246 194l10-8M266 194l10-8M286 194l10-8M306 194l10-8M326 194l10-8"/>
-<g class="t-prosjektert"><path d="M60 186V84M270 186V84M54 186H276M60 136H270M60 84H270M48 88L165 26L282 88"/></g>
+const bjelker = Array.from({ length: 10 }, (_, i) => `M${76 + i * 19} 132h8v8h-8z`).join('');
+const stendere = [60, 262].map((x) => `M${x} 186V84M${x + 8} 186V84`).join('');
+export const SNITT = `<svg class="snitt" viewBox="0 0 340 236" role="img" aria-label="Snitt av et hus i to etasjer, stiplet fordi det ikke er bygget ennå.">
+<path class="t-terreng" d="M0 186H340"/><path class="t-skravur-linje" d="M6 202l10-8M26 202l10-8M46 202l10-8M286 202l10-8M306 202l10-8M326 202l10-8M6 194l10-8M26 194l10-8M286 194l10-8M306 194l10-8"/>
+<g class="t-prosjektert"><path d="M54 186V200H276V186M48 88L165 26L282 88M60 84H270"/></g>
+<g class="t-tre"><path d="${stendere}"/><path d="${bjelker}"/><path d="M68 140H262M68 132H262"/><path d="M70 84L165 34L260 84M110 84L130 60M220 84L200 60M165 34V84"/></g>
 <g class="t-vent"><path d="M90 76H240M240 76V98"/></g>
 <g class="t-ror"><path d="M212 186V100M212 160H236M212 114H236"/></g>
 <g class="t-el-linje"><path d="M112 186V96"/><circle cx="112" cy="164" r="3.5"/><circle cx="112" cy="116" r="3.5"/></g>
 <g class="t-maal"><path d="M296 186H316M296 136H316M296 84H316M300 186l-4-6h8zM300 136l-4-6h8zM300 84l-4-6h8z"/><text x="306" y="180">±0</text><text x="306" y="130">+2,7</text><text x="306" y="78">+5,4</text></g>
-<g class="t-forklaring"><path class="t-el-linje" d="M20 214H32"/><text x="36" y="217">El</text><path class="t-ror" d="M70 214H82"/><text x="86" y="217">Rør</text><path class="t-vent" d="M126 214H138"/><text x="142" y="217">Ventilasjon</text><text x="240" y="217">Snitt B–B</text></g>
+<g class="t-forklaring"><path class="t-tre-tegn" d="M4 222H16"/><text x="20" y="226">Tre</text><path class="t-el-linje" d="M58 222H70"/><text x="74" y="226">El</text><path class="t-ror" d="M102 222H114"/><text x="118" y="226">Rør</text><path class="t-vent" d="M150 222H162"/><text x="166" y="226">Vent.</text><text x="262" y="226">Snitt B–B</text></g>
 </svg>`;
