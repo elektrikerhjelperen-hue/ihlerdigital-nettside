@@ -1,0 +1,72 @@
+{
+ "laget": "2026-11-25T23:13:51.361Z",
+ "refs": [
+  "origin/main",
+  "03419a2"
+ ],
+ "filer": [
+  "/404.html",
+  "/app-ads.txt",
+  "/apper/",
+  "/block-kingdom/",
+  "/block-kingdom/personvern/",
+  "/elektrikerhjelpen/",
+  "/elektrikerhjelpen/personvern/",
+  "/favicon.svg",
+  "/fonter/bigshoulders.woff2",
+  "/fonter/bs-OFL.txt",
+  "/fonter/martianmono.woff2",
+  "/fonter/mm-OFL.txt",
+  "/fonter/schibsted-kursiv.woff2",
+  "/fonter/schibsted.woff2",
+  "/fonter/sg-OFL.txt",
+  "/garasjen/",
+  "/garasjen/personvern/",
+  "/handlelista/",
+  "/handlelista/personvern/",
+  "/",
+  "/matplanlegger/personvern/",
+  "/og.jpg",
+  "/prosjektmappa/",
+  "/prosjektmappa/personvern/",
+  "/style.css",
+  "/totallylegit/",
+  "/totallylegit/personvern/",
+  "/trollminetycoon/",
+  "/trollminetycoon/personvern/"
+ ],
+ "sider": {
+  "/404.html": [],
+  "/apper/": [
+   "https://apps.apple.com/no/app/elektrikerhjelpen/id6795866616",
+   "https://apps.apple.com/no/app/garasjen/id6827586327",
+   "https://play.google.com/store/apps/details?id=com.Elektrikerhjelpen"
+  ],
+  "/block-kingdom/": [],
+  "/block-kingdom/personvern/": [],
+  "/elektrikerhjelpen/": [
+   "https://apps.apple.com/no/app/elektrikerhjelpen/id6795866616",
+   "https://play.google.com/store/apps/details?id=com.Elektrikerhjelpen"
+  ],
+  "/elektrikerhjelpen/personvern/": [],
+  "/garasjen/": [
+   "https://apps.apple.com/no/app/garasjen/id6827586327"
+  ],
+  "/garasjen/personvern/": [],
+  "/handlelista/": [],
+  "/handlelista/personvern/": [],
+  "/": [],
+  "/matplanlegger/personvern/": [],
+  "/prosjektmappa/": [],
+  "/prosjektmappa/personvern/": [],
+  "/totallylegit/": [
+   "https://apps.apple.com/no/app/totallylegit-idle/id6820141470"
+  ],
+  "/totallylegit/personvern/": [],
+  "/trollminetycoon/": [
+   "https://apps.apple.com/no/app/troll-mine-tycoon/id6827335548"
+  ],
+  "/trollminetycoon/personvern/": []
+ },
+ "appAds": "google.com, pub-7564623326009549, DIRECT, f08c47fec0942fa0\n"
+}
