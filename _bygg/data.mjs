@@ -19,11 +19,11 @@ export const apper = [
     kort: 'Kalkulatorer, oppslag og dokumentasjon for elektrikere.',
     ingress: 'Tverrsnitt, vern og spenningsfall etter NEK 400, romkart, kursfortegnelse og koblingsskjema. Nytt i iOS 3.9 og Android 1.2.5: styrestrøm og hovedstrøm, fire nye verktøy og downlights som justeres samlet.',
     tittel: 'Regn det ut der du står',
-    pris: 'Gratis å laste ned. Pro og Prosjekt er abonnement med gratis prøveperiode.',
+    pris: 'Gratis å laste ned. Pro og Prosjekt er abonnement, begge med prøveperiode.',
     // Fra betalingsmuren i appen (App/Betalingsmur.swift). Ingen priser her: de står i appen.
     abonnement: [
       ['Pro', 'Alle verktøy og kalkulatorer, romkart og ubegrenset med kunder, kursfortegnelser og bilder.'],
-      ['Prosjekt', 'Alt i Pro, og hele bygget: tegning fra utbygger under kartet, oversikt over etasjer, materialliste og samlet PDF for bygget.'],
+      ['Prosjekt', 'Alt i Pro, og hele bygget: tegning fra utbygger under kartet, oversikt med røykvarslere og datapunkter, materialliste og samlet PDF for bygget.'],
     ],
     hvem: 'For elektrikere og lærlinger som vil regne det ut der de står, og levere ryddig dokumentasjon når jobben er ferdig. Beregningene er veiledende og erstatter ikke installatørens egen vurdering og kontroll.',
     hva: [
@@ -90,11 +90,11 @@ export const apper = [
     ],
   },
   {
-    // Ikke avslør detaljer ennå (Kristian 26.11.2026): bare konseptet, ingen skjermbilder, funksjoner eller dato.
+    // Ikke avslør detaljer ennå (26.11.2026): bare konseptet, ingen skjermbilder, funksjoner eller dato.
     slug: 'prosjektmappa', gaarTil: 'Fagfolk og bedrifter på samme bygg', navn: 'Prosjektmappa', kurs: 'K7', leder: 3, gruppe: 'Verktøy', tema: 'pm',
     deler: ['Prosjekt-', 'mappa'], underArbeid: true, kommer: true,
     kort: 'Ett felles prosjekt for alle fagene på samme bygg. Kommer.',
-    ingress: 'Ett felles prosjekt for alle fagene på samme bygg. Delte plantegninger og kart, og en bedrift som styrer hvem som gjør hva.',
+    ingress: 'Ett felles prosjekt for alle fagene på samme bygg. Delte plantegninger og kart. Bedriften bestemmer hvem som er med, og hvilken rolle de har.',
     tittel: 'Ett bygg, alle fag',
     pris: 'Under arbeid. Ikke i App Store ennå.',
     hva: [], bilder: [],

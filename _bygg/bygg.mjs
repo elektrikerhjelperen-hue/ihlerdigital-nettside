@@ -85,10 +85,10 @@ const abonnement = (ap) => ap.abonnement ? `<dl class="abo">${ap.abonnement.map(
 
 // ---- Forsiden ---------------------------------------------------------------
 const PRINSIPP = [
-  ['Det skal stemme', 'Beregninger følger norm og kilde, for eksempel NEK 400. Er noe veiledende, står det tydelig.'],
-  ['Virker der du står', 'Ett svar, og hvorfor. Det meste virker uten konto og uten dekning.'],
-  ['Dataene er dine', 'Ingen reklame og ingen sporing i Elektrikerhjelpen. Det du legger inn, ligger hos deg.'],
-  ['Vi svarer selv', 'Skriver du til oss, er det de som lager appene som leser det.'],
+  ['Det skal stemme', 'Beregningene bygger på norm og oppgitt kilde, for eksempel NEK 400. Er noe veiledende, står det.'],
+  ['Ett svar, og hvorfor', 'Verktøyene gir ett svar og viser hvordan det er regnet ut. Det meste virker uten konto.'],
+  ['Dataene er dine', 'Ingen reklame og ingen analyseverktøy i Elektrikerhjelpen. Vi selger ingenting om deg.'],
+  ['Vi svarer selv', 'E-post til oss leses av dem som lager appene.'],
 ];
 const punktliste = (punkter) => `<ol class="hva-liste">${punkter.map(([t, x], i) => `<li data-nr="${String(i + 1).padStart(2, '0')}"><h3>${t}</h3><p>${x}</p></li>`).join('')}</ol>`;
 const ehBilder = [0, 4, 5, 3]; // romkart, kabelberegning, kursfortegnelse, downlights
@@ -98,7 +98,7 @@ const forside = HODE({ tittel: 'Ihler Digital – planlegging og dokumentasjon f
 <div class="helt-tekst">
 <p class="mono">Tegn.nr ID-001 · Ål i Hallingdal</p>
 <h1 id="h1">Rom for rom.</h1>
-<p class="helt-ingress">Ihler Digital lager apper for fagfolk som planlegger og dokumenterer bygg. Romkart, mål og plassering, fra skanning til ferdig dokumentasjon.</p>
+<p class="helt-ingress">Ihler Digital lager apper for fagfolk som planlegger og dokumenterer bygg. Romkart, mål og plassering, fra skanning til ferdig dokumentasjon, for elektriker, tømrer, rørlegger og byggeplass.</p>
 <p class="helt-valg"><a class="knapp" href="#elektrikerhjelpen">Elektrikerhjelpen</a><a class="les" href="#prosjektmappa">Prosjektmappa kommer<span aria-hidden="true"> ↓</span></a></p>
 </div>
 <figure class="fjell" aria-label="Hallingskarvet tegnet som snitt med høydekurver">
@@ -110,7 +110,7 @@ ${fjell(false)}
 <div class="ark">
 <section class="innrykk plan" id="plan" aria-labelledby="h-plan">
 <h2 class="mellom" id="h-plan">${akse('A')}Fra skanning til dokumentasjon</h2>
-<p class="ingress">Samme rom, fire trinn. Elektriker, tømrer og rørlegger trenger det samme: riktige mål, og at alle vet hva som ligger hvor.</p>
+<p class="ingress">Samme rom, fire trinn. Elektriker, tømrer og rørlegger trenger det samme: riktige mål, og at alle vet hva som ligger hvor. Elektrikerhjelpen gjør dette for elektrikere i dag.</p>
 <ol class="trinn">
 ${TRINN.map(([nr, t, x, f]) => `<li><figure>${trinnSvg(f, `${t}: ${x}`)}</figure><p class="trinn-nr mono">${nr} · ${t}</p><p>${x}</p></li>`).join('\n')}
 </ol>
@@ -122,7 +122,7 @@ ${TRINN.map(([nr, t, x, f]) => `<li><figure>${trinnSvg(f, `${t}: ${x}`)}</figure
 <h2 class="kjempe" id="h-eh">${navnH(EH)}</h2>
 <div class="kurs-kropp">
 <div class="kurs-tekst">
-<p class="ingress">Kalkulatorer, oppslag og dokumentasjon for elektrikere. Romkart for hele bygget, kabelberegning etter NEK 400, kursfortegnelse og koblingsskjema som PDF.</p>
+<p class="ingress">Kalkulatorer, oppslag og dokumentasjon for elektrikere. Romkart, kabelberegning etter NEK 400, kursfortegnelse og koblingsskjema som PDF.</p>
 <p class="handling">${storeKnapper(EH)}</p>
 <p class="pris mono">${EH.pris}</p>
 ${abonnement(EH)}
@@ -140,7 +140,7 @@ ${abonnement(EH)}
 <div>
 <p class="ingress">Ett felles prosjekt for alle fagene på samme bygg.</p>
 <p>Elektriker, rørlegger, tømrer og byggeplassen jobber i de samme plantegningene og kartene, hver med sitt. Bedriften bestemmer hvem som er med, og hvilken rolle de har.</p>
-<p>Prosjektmappa er under arbeid. Vil du høre når den er klar, eller prøve den i firmaet ditt? Si fra, så skriver vi når det er noe å vise.</p>
+<p>Prosjektmappa er under arbeid. Vil du ha beskjed når den er klar? Send oss en e-post.</p>
 <p class="handling"><a class="knapp" href="${post('Prosjektmappa – meld interesse')}">Meld interesse</a><span class="mono">E-post til ${firma.epost}</span></p>
 </div>
 <figure>${SNITT}<figcaption class="mono">Stiplet: prosjektert, ikke utført</figcaption></figure>
@@ -150,9 +150,9 @@ ${abonnement(EH)}
 <section class="innrykk bedrift" id="bedrift" aria-labelledby="h-bedrift">
 <h2 class="mellom" id="h-bedrift">${akse('D')}For bedrifter</h2>
 <div class="to-spalter">
-<p class="ingress">Firmalisens kommer. Én avtale for alle i firmaet, i stedet for at hver og en kjøper selv.</p>
+<p class="ingress">Firmalisens kommer. Pris og dato er ikke satt ennå.</p>
 <div>
-<p>Har du et firma med flere fagfolk, og vil vite mer om lisens eller hvordan appene passer inn hos dere? Skriv til oss. Vi svarer selv, og vi forteller heller hva som ikke er klart ennå enn å love noe.</p>
+<p>Har du et firma med flere fagfolk, og vil vite mer om lisens eller hvordan appene passer inn hos dere? Skriv til oss, så får dere beskjed når den er klar.</p>
 <p class="handling"><a class="knapp" href="${post('Firmalisens')}">Spør om firmalisens</a></p>
 </div>
 </div>
@@ -162,7 +162,7 @@ ${abonnement(EH)}
 <div class="to-spalter">
 <div>
 <p class="ingress">Vi lager programvare for dem som planlegger, bygger og dokumenterer.</p>
-<p>Vi holder til i Ål i Hallingdal og har elektrofaget i huset. Derfor starter vi i jobben slik den faktisk gjøres, og sjekker tall og regler mot kilden før de havner i en app.</p>
+<p>Vi holder til i Ål i Hallingdal og har elektrofaget i huset. Tall og regler i appene sjekkes mot normen eller kilden de kommer fra.</p>
 <p>Ihler Digital drives i dag av ${firma.selskap}, org.nr ${firma.orgnr}. Navneendring til Ihler Digital AS pågår.</p>
 </div>
 ${punktliste(PRINSIPP)}
@@ -170,7 +170,7 @@ ${punktliste(PRINSIPP)}
 </section>
 <section class="innrykk kontakt" id="kontakt" aria-labelledby="h-kontakt">
 <h2 class="mellom" id="h-kontakt">${akse('F')}Kontakt</h2>
-<p class="ingress">Spørsmål om en app, feil du har funnet, eller noe du savner? Skriv til oss.</p>
+<p class="ingress">Spørsmål om en app, eller en feil du har funnet? Skriv til oss.</p>
 <p><a class="knapp" href="mailto:${firma.epost}">${firma.epost}</a></p>
 </section>
 </div>
@@ -186,7 +186,7 @@ skriv('apper/index.html', HODE({ tittel: 'Alle apper – Ihler Digital', beskriv
 <section class="innrykk apper-hode" aria-labelledby="h1">
 <p class="sti mono"><a href="/">Ihler Digital</a> / Alle apper</p>
 <h1 class="mellom" id="h1">${akse('A')}Alle apper</h1>
-<p>Støtte og personvern for alle appene fra Ihler Digital, også dem vi lager ved siden av.</p>
+<p>Støtte og personvern for alle appene fra Ihler Digital.</p>
 </section>
 <section class="innrykk fortegnelse" aria-label="Appene">
 <table>

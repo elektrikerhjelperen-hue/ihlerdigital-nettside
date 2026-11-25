@@ -77,12 +77,12 @@ export const TRINN = [
   ['01', 'Skann', 'Rommet skannes med telefonen, eller tegnes for hånd med mål.', skann],
   ['02', 'Mål', 'Vegger, dører og vinduer får mål. Rom for rom, etasje for etasje.', maal],
   ['03', 'Fag', 'Stikk, lys, rør og vegger legges inn der de skal være.', fag],
-  ['04', 'Dokumentasjon', 'Det ferdige går til kunden som PDF med mål og plassering.', dok],
+  ['04', 'Dokumentasjon', 'Det ferdige blir en PDF med mål og plassering, klar til kunden.', dok],
 ];
 export const trinnSvg = (f, tittel) => `<svg viewBox="0 0 240 200" role="img" aria-label="${tittel}">${f()}</svg>`;
 
 // ---- Prosjektmappa: snitt av et bygg, stiplet fordi det ikke er bygget ennå ----------
-export const SNITT = `<svg class="snitt" viewBox="0 0 340 230" role="img" aria-label="Snitt av et hus i to etasjer, stiplet som prosjektert. Tre fag går gjennom etasjene: el, rør og ventilasjon.">
+export const SNITT = `<svg class="snitt" viewBox="0 0 340 230" role="img" aria-label="Snitt av et hus i to etasjer, stiplet fordi det ikke er bygget ennå.">
 <path class="t-terreng" d="M0 186H340"/><path class="t-skravur-linje" d="M6 194l10-8M26 194l10-8M46 194l10-8M66 194l10-8M86 194l10-8M106 194l10-8M126 194l10-8M146 194l10-8M166 194l10-8M186 194l10-8M206 194l10-8M226 194l10-8M246 194l10-8M266 194l10-8M286 194l10-8M306 194l10-8M326 194l10-8"/>
 <g class="t-prosjektert"><path d="M60 186V84M270 186V84M54 186H276M60 136H270M60 84H270M48 88L165 26L282 88"/></g>
 <g class="t-vent"><path d="M90 76H240M240 76V98"/></g>
