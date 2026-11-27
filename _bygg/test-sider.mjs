@@ -47,6 +47,16 @@ for (const modus of ['light', 'dark']) {
           const px = parseFloat(cs.fontSize), stor = px >= 24 || (px >= 18.66 && +cs.fontWeight >= 700);
           if (k < (stor ? 3 : 4.5)) f.push(`kontrast ${k.toFixed(2)} «${n.textContent.trim().slice(0, 30)}» ${cs.color} på ${bg.r},${bg.g},${bg.b}`);
         }
+        // Tegningene i seksjon A: planen i felt 04 skal ligge inne i arket over tittelfeltet, og målet 5400 i felt 02 skal stå fritt.
+        const tr = document.querySelectorAll('ol.trinn svg');
+        if (tr.length === 4) {
+          const a = tr[3].querySelector('.t-ark').getBoundingClientRect(), g = tr[3].querySelector('g[transform]').getBoundingClientRect(), tf = tr[3].querySelector('.t-tf').getBoundingClientRect();
+          if (g.left < a.left || g.right > a.right || g.top < a.top || g.bottom > tf.top) f.push('felt 04: planen går utenfor arket');
+          const t = [...tr[1].querySelectorAll('.t-maal text')].find((e) => e.textContent === '5400')?.getBoundingClientRect(), l = [...tr[1].querySelectorAll('.t-maal path')].at(-1).getBoundingClientRect();
+          if (!t || t.top <= l.bottom) f.push('felt 02: 5400 ligger oppå målelinja');
+        }
+        const ider = [...document.querySelectorAll('[id]')].map((e) => e.id);
+        ider.filter((id, i) => ider.indexOf(id) !== i).forEach((id) => f.push('dobbel id: ' + id));
         return f;
       });
       r.forEach((x) => feil.push(`${modus} ${b}px ${s}: ${x}`));

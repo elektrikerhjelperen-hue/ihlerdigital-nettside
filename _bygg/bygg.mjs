@@ -143,7 +143,7 @@ ${abonnement(EH)}
 <p>Prosjektmappa er under arbeid. Vil du ha beskjed når den er klar? Send oss en e-post.</p>
 <p class="handling"><a class="knapp" href="${post('Prosjektmappa – meld interesse')}">Meld interesse</a><span class="mono">E-post til ${firma.epost}</span></p>
 </div>
-<figure>${SNITT}<figcaption class="mono">Stiplet: prosjektert, ikke utført</figcaption></figure>
+<figure>${SNITT}<figcaption class="mono">Prosjektert, ikke utført · stiplet: ytterkanten av bygget</figcaption></figure>
 </div>
 </div>
 </section>
@@ -259,7 +259,7 @@ ${sti(ap)}
 <p>For elektriker, rørlegger, tømrer og alle andre som er på samme bygg. Appen er under arbeid og ikke i App Store ennå.</p>
 <p class="handling"><a class="knapp" href="${post('Prosjektmappa – meld interesse')}">Meld interesse</a><span class="mono">E-post til ${firma.epost}</span></p>
 </div>
-<figure>${SNITT}<figcaption class="mono">Stiplet: prosjektert, ikke utført</figcaption></figure>
+<figure>${SNITT}<figcaption class="mono">Prosjektert, ikke utført · stiplet: ytterkanten av bygget</figcaption></figure>
 </div>
 </div>
 </section>
