@@ -61,7 +61,7 @@ ${rom(65, 63, 'Bad', '4,1 m²')}${rom(78, 125, 'Gang', '4,1 m²')}${rom(155, 82,
 const STIKK = '<path d="M0 0V5M-3.5 2.5H3.5M-6.5 5H6.5M-6.5 5A6.5 6.5 0 0 0 6.5 5"/>'; // stikkontakt med jord, på vegg
 const LAMPE = '<circle r="5"/><path d="M-3.5 -3.5L3.5 3.5M-3.5 3.5L3.5 -3.5"/>'; // lampepunkt i tak
 const BRYTER = '<circle r="2.6"/><path d="M1.8 -1.8L8.5 -8.5M8.5 -8.5L11.3 -5.7"/>'; // enpolet bryter
-const SLUK = '<rect x="-5" y="-5" width="10" height="10"/><path d="M-5 -1.7H5M-5 1.7H5M-1.7 -5V5M1.7 -5V5"/>'; // sluk med rist
+const SLUK = '<rect x="-5" y="-5" width="10" height="10"/><path class="t-rist" d="M-5 -1.7H5M-5 1.7H5M-1.7 -5V5M1.7 -5V5"/>'; // sluk med rist
 const plass = (x, y, r, sym) => `<g transform="translate(${x} ${y})${r ? ` rotate(${r})` : ''}">${sym}</g>`;
 const skravur = (id) => `<pattern id="${id}" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="t-skravur-strek" d="M0 0V4"/></pattern>`;
 // Rør på badet (blått): WC mot venstre vegg, servant mot øvre vegg, sluk midt på gulvet.
@@ -73,11 +73,11 @@ const EL = '<g class="t-el">' + plass(155, 90, 0, LAMPE) + plass(80, 130, 0, LAM
   + plass(108, 109, 0, BRYTER) + plass(87, 152, 0, BRYTER) + plass(78, 101, 90, BRYTER)
   + plass(207, 70, 90, STIKK) + plass(170, 157, 180, STIKK) + '</g>';
 // Tømrer (brun skravur): ny vegg mellom bad/gang og stue.
-const tomrer = (id) => `<rect class="t-skravur" x="97" y="30" width="6" height="85" fill="url(#${id})"/>`;
+const tomrer = (id) => `<rect class="t-skravur t-tomrer" x="97" y="30" width="6" height="85" style="fill:url(#${id})"/>`;
 function fag() {
   // Forklaringen bruker nøyaktig de samme symbolene: el = lampe, stikk, bryter; rør = sluk (blått); tømrer = skravur (brunt).
   return `<defs>${skravur('skravur')}</defs>${vegger('t-dempet')}${tomrer('skravur')}${ROR}${EL}
-<g class="t-forklaring"><g class="t-el">${plass(32, 185, 0, LAMPE)}${plass(50, 179, 0, STIKK)}${plass(64, 189, 0, BRYTER)}</g><text x="82" y="189">El</text>${plass(108, 185, 0, '<g class="t-ror t-san">' + SLUK + '</g>')}<text x="118" y="189">Rør</text><rect class="t-skravur" x="150" y="181" width="12" height="8" fill="url(#skravur)"/><text x="166" y="189">Tømrer</text></g>`;
+<g class="t-forklaring"><g class="t-el">${plass(32, 185, 0, LAMPE)}${plass(50, 179, 0, STIKK)}${plass(64, 189, 0, BRYTER)}</g><text x="82" y="189">El</text>${plass(108, 185, 0, '<g class="t-ror t-san">' + SLUK + '</g>')}<text x="118" y="189">Rør</text><rect class="t-skravur t-tomrer" x="150" y="181" width="12" height="8" style="fill:url(#skravur)"/><text x="166" y="189">Tømrer</text></g>`;
 }
 function dok() {
   // Ferdig dokumentasjon: et ark med planen i liten skala og tittelfelt. Planen (x 27–213, y 26–163) skaleres
