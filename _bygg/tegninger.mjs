@@ -36,7 +36,8 @@ export const MERKE = '<svg class="merke-fjell" viewBox="0 0 44 18" width="44" he
 // Rom: bad (30–100 × 30–95), gang (30–100 × 95–160), stue (100–210 × 30–160). 1 enhet = 30 mm.
 const VEGG_UTE = 'M30 30H130M180 30H210V160H77M55 160H30V30';
 const VEGG_INNE = 'M100 30V115M100 137V160M30 95H50M72 95H100';
-const DORER = '<path class="t-tynn" d="M72 95V117M50 95A22 22 0 0 0 72 117M100 137H122M100 115A22 22 0 0 1 122 137M77 160V138M55 160A22 22 0 0 1 77 138"/>';
+// Dører: badet slår ut i gangen (hengsel ved x 50), stua slår inn, ytterdøra slår inn med hengsel ved x 55, så midten av gangen er fri.
+const DORER = '<path class="t-tynn" d="M50 95V117M72 95A22 22 0 0 1 50 117M100 137H122M100 115A22 22 0 0 1 122 137M55 160V138M77 160A22 22 0 0 0 55 138"/>';
 const VINDU = '<path class="t-tynn" d="M130 27H180M130 30H180M130 33H180M130 26V34M180 26V34"/>';
 const vegger = (klasse = '') => `<path class="t-vegg-ute ${klasse}" d="${VEGG_UTE}"/><path class="t-vegg-inne ${klasse}" d="${VEGG_INNE}"/>${DORER}${VINDU}`;
 const maalLinje = (x1, y1, x2, y2, tekst, side = -1) => {
@@ -53,23 +54,36 @@ function skann() {
 <g class="t-tlf"><rect x="150" y="104" width="16" height="28" rx="3"/><path class="t-straale" d="M158 104L128 62M158 104L190 62"/><path class="t-straale t-bue" d="M131 66Q158 54 187 66"/></g>`;
 }
 function maal() {
-  return `${vegger()}<g class="t-maal">${maalLinje(30, 14, 100, 14, '2100')}${maalLinje(100, 14, 210, 14, '3300')}${maalLinje(14, 30, 14, 95, '1950')}${maalLinje(14, 95, 14, 160, '1950')}${maalLinje(30, 176, 210, 176, '5400', 1.6)}</g>
-${rom(65, 63, 'Bad', '4,1 m²')}${rom(65, 128, 'Gang', '4,1 m²')}${rom(155, 82, 'Stue', '12,9 m²')}`;
+  return `${vegger()}<g class="t-maal">${maalLinje(30, 14, 100, 14, '2100')}${maalLinje(100, 14, 210, 14, '3300')}${maalLinje(14, 30, 14, 95, '1950')}${maalLinje(14, 95, 14, 160, '1950')}${maalLinje(30, 176, 210, 176, '5400', 3.5)}</g>
+${rom(65, 63, 'Bad', '4,1 m²')}${rom(78, 125, 'Gang', '4,1 m²')}${rom(155, 82, 'Stue', '12,9 m²')}`;
 }
+// Fagsymbolene er tegnet selv, i vanlig norsk tegningsstil. Lokale koordinater: veggen ligger ved y = 0, symbolet går inn i rommet (y > 0).
+const STIKK = '<path d="M0 0V5M-3.5 2.5H3.5M-6.5 5H6.5M-6.5 5A6.5 6.5 0 0 0 6.5 5"/>'; // stikkontakt med jord, på vegg
+const LAMPE = '<circle r="5"/><path d="M-3.5 -3.5L3.5 3.5M-3.5 3.5L3.5 -3.5"/>'; // lampepunkt i tak
+const BRYTER = '<circle r="2.6"/><path d="M1.8 -1.8L8.5 -8.5M8.5 -8.5L11.3 -5.7"/>'; // enpolet bryter
+const SLUK = '<rect x="-5" y="-5" width="10" height="10"/><path d="M-5 -1.7H5M-5 1.7H5M-1.7 -5V5M1.7 -5V5"/>'; // sluk med rist
+const plass = (x, y, r, sym) => `<g transform="translate(${x} ${y})${r ? ` rotate(${r})` : ''}">${sym}</g>`;
+const skravur = (id) => `<pattern id="${id}" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="t-skravur-strek" d="M0 0V4"/></pattern>`;
+// Rør på badet (blått): WC mot venstre vegg, servant mot øvre vegg, sluk midt på gulvet.
+const ROR = '<g class="t-ror t-san"><rect x="33" y="40" width="7" height="18" rx="1"/><ellipse cx="49" cy="49" rx="9" ry="7"/>'
+  + '<rect x="64" y="33" width="22" height="12" rx="2"/><ellipse cx="75" cy="39" rx="7" ry="3.5"/>'
+  + plass(68, 74, 0, SLUK) + '</g>';
+// El (blekk): lampe i bad, gang og stue; bryter på låssiden av hver dør (badet sin står i gangen); to stikk på stuevegger.
+const EL = '<g class="t-el">' + plass(155, 90, 0, LAMPE) + plass(80, 130, 0, LAMPE) + plass(46, 78, 0, LAMPE)
+  + plass(108, 109, 0, BRYTER) + plass(87, 152, 0, BRYTER) + plass(78, 101, 90, BRYTER)
+  + plass(207, 70, 90, STIKK) + plass(170, 157, 180, STIKK) + '</g>';
+// Tømrer (brun skravur): ny vegg mellom bad/gang og stue.
+const tomrer = (id) => `<rect class="t-skravur" x="97" y="30" width="6" height="85" fill="url(#${id})"/>`;
 function fag() {
-  // Tre fag i samme tegning: tømrer (ny vegg, skravert), rør (blå), el (symboler i blekk).
-  const stikk = (x, y, r) => `<g transform="translate(${x} ${y}) rotate(${r})"><path d="M-4 0A4 4 0 0 1 4 0Z"/><path d="M0 0V5"/></g>`;
-  const lys = (x, y) => `<g transform="translate(${x} ${y})"><circle r="4"/><path d="M-2.8 -2.8L2.8 2.8M-2.8 2.8L2.8 -2.8"/></g>`;
-  return `<defs><pattern id="skravur" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V4" stroke="currentColor" stroke-width="1"/></pattern></defs>${vegger('t-dempet')}
-<rect class="t-skravur" x="97" y="30" width="6" height="85"/>
-<g class="t-ror"><path d="M36 40H60V52"/><path class="t-ror-vv" d="M36 44H56V52"/><rect x="52" y="52" width="16" height="10" rx="2"/><path d="M36 82H44" /><circle cx="48" cy="82" r="4"/></g>
-<g class="t-el">${stikk(150, 156, 180)}${stikk(206, 100, -90)}${stikk(104, 60, 90)}${lys(135, 65)}${lys(175, 65)}${lys(135, 115)}${lys(175, 115)}${stikk(85, 98, 0)}</g>
-<g class="t-forklaring"><path class="t-tegn-el" d="M30 186H42"/><text x="46" y="189">El</text><path class="t-tegn-ror" d="M80 186H92"/><text x="96" y="189">Rør</text><rect class="t-skravur" x="134" y="182" width="12" height="7"/><text x="150" y="189">Tømrer</text></g>`;
+  // Forklaringen bruker nøyaktig de samme symbolene: el = lampe, stikk, bryter; rør = sluk (blått); tømrer = skravur (brunt).
+  return `<defs>${skravur('skravur')}</defs>${vegger('t-dempet')}${tomrer('skravur')}${ROR}${EL}
+<g class="t-forklaring"><g class="t-el">${plass(32, 185, 0, LAMPE)}${plass(50, 179, 0, STIKK)}${plass(64, 189, 0, BRYTER)}</g><text x="82" y="189">El</text>${plass(108, 185, 0, '<g class="t-ror t-san">' + SLUK + '</g>')}<text x="118" y="189">Rør</text><rect class="t-skravur" x="150" y="181" width="12" height="8" fill="url(#skravur)"/><text x="166" y="189">Tømrer</text></g>`;
 }
 function dok() {
-  // Ferdig dokumentasjon: et ark med planen i liten skala og tittelfelt.
+  // Ferdig dokumentasjon: et ark med planen i liten skala og tittelfelt. Planen (x 27–213, y 26–163) skaleres
+  // til .64 og ligger midt i feltet over PDF-stempelet, godt innenfor arket (x 52–188).
   return `<rect class="t-ark" x="52" y="6" width="136" height="188"/>
-<g transform="translate(64 20) scale(.62)">${vegger()}<g class="t-el"><circle cx="135" cy="65" r="4"/><circle cx="175" cy="65" r="4"/><circle cx="135" cy="115" r="4"/><circle cx="175" cy="115" r="4"/></g><g class="t-ror"><path d="M36 40H60V52"/></g></g>
+<defs>${skravur('skravur-dok')}</defs><g transform="translate(43 6) scale(.64)">${vegger()}${tomrer('skravur-dok')}${ROR}${EL}</g>
 <g class="t-tf"><path d="M52 150H188M52 166H188M52 180H188M120 150V194M154 166V194"/><text x="57" y="161">Leilighet 2B</text><text x="57" y="176">Ihler Digital</text><text x="124" y="176">Rev. A</text><text x="158" y="176">1:50</text><text x="57" y="190">Tegn.nr 001</text><text x="124" y="190">3 fag</text></g>
 <path class="t-stempel" d="M150 128h28v14h-28z"/><text class="t-stempel-t" x="164" y="138" text-anchor="middle">PDF</text>`;
 }
