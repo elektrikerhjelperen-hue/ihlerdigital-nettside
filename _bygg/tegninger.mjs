@@ -102,25 +102,25 @@ const kote = (h) => +(186 - h * 26).toFixed(1);
 const MONE = [157, kote(5.4)];
 const FALL = (kote(3.3) - MONE[1]) / (MONE[0] - 60); // stigning per enhet langs taket
 const takY = (x, ned = 0) => +(MONE[1] + ned + Math.abs(x - MONE[0]) * FALL).toFixed(1);
-// Bjelkelaget i etasjeskillet: bjelker c/c 0,6 m sett i snitt (kappet tre = rektangel med kryss), gulv over og himling under.
+// Bjelkelaget i etasjeskillet: bjelker c/c 0,6 m sett i snitt (kappet tre = rektangel med kryss), gulvlinje over og himlingslinje under.
 const BJELKE = (x, y, b = 3, h = 7) => `M${x} ${y}h${b}v${h}h${-b}zM${x} ${y}l${b} ${h}M${x + b} ${y}l${-b} ${h}`;
 const bjelker = Array.from({ length: 11 }, (_, i) => BJELKE(+(157 + (i - 5) * 15.6 - 1.5).toFixed(1), 117)).join('');
 // Fagsymbolene er de samme som i plantegningene over (STIKK og LAMPE), så el ser likt ut i hele siden.
 const VENTIL = '<path d="M-3 -2.5L3 2.5V-2.5L-3 2.5Z"/>'; // stengeventil på røret
 const PIL = (x, y, r) => `<path class="t-pil" transform="translate(${x} ${y}) rotate(${r})" d="M0 -3.5L3 1.5H-3Z"/>`; // pilspiss, peker opp ved r = 0
-const KANAL_X = 130; // ventilasjonskanalen går mellom to bjelker (x 127,7–140,3)
+const KANAL_X = 130; // ventilasjonskanalen går mellom to bjelker (x 127,3–139,9)
 const skravurJord = [6, 26, 280, 300, 320].map((x) => `M${x} 202l10-8M${x} 194l10-8`).join('');
 const koteMerke = (y, tekst, fra) => `${fra ? `<path class="t-hjelp" d="M${fra} ${y}H296"/>` : ''}<path d="M296 ${y}H316"/><path class="t-kote-pil" d="M300 ${y}l-4-6h8z"/><text x="306" y="${y - 6}">${tekst}</text>`;
-export const SNITT = `<svg class="snitt" viewBox="0 0 340 236" role="img" aria-label="Snitt B–B av et hus med loftsetasje: bjelkelag i etasjeskillet, kabel opp i veggen til en stikkontakt og en taklampe, stigerør med avgreninger og en ventilasjonskanal ut gjennom taket. Stiplet fordi det ikke er bygget ennå.">
+export const SNITT = `<svg class="snitt" viewBox="0 0 340 236" role="img" aria-label="Snitt B–B av et hus med loftsetasje: bjelkelag i etasjeskillet, kabel opp i veggen til en stikkontakt og en taklampe, stigerør med avgreninger og en ventilasjonskanal ut gjennom taket. Prosjektert, ikke utført: ytterkanten av bygget er stiplet.">
 <path class="t-terreng" d="M0 186H340"/><path class="t-skravur-linje" d="${skravurJord}"/>
 <g class="t-prosjektert"><path d="M54 186V200H260V186M60 186V${kote(3.3)}M254 186V${kote(3.3)}M48 ${takY(48)}L${MONE[0]} ${MONE[1]}L266 ${takY(266)}"/></g>
 <g class="t-tre"><path d="M67 186V${takY(67, 7)}M247 186V${takY(247, 7)}M60 ${takY(60, 7)}L${MONE[0]} ${MONE[1] + 7}L254 ${takY(254, 7)}"/><path class="t-gulv" d="M67 116H247M67 124H247"/><path d="${bjelker}"/></g>
-<g class="t-vent"><path d="M${KANAL_X} 124V${takY(KANAL_X) - 6}M${KANAL_X + 8} 124V${takY(KANAL_X + 8) - 6}M${KANAL_X - 4} 124H${KANAL_X + 12}M${KANAL_X - 6} ${takY(KANAL_X) - 12}H${KANAL_X + 14}"/><path class="t-pil-strek" d="M${KANAL_X + 4} 142V${takY(KANAL_X) - 4}"/>${PIL(KANAL_X + 4, 134, 0)}${PIL(KANAL_X + 4, 92, 0)}${PIL(KANAL_X + 4, takY(KANAL_X) - 4, 0)}</g>
-<g class="t-ror t-stige"><path d="M276 196H212V${kote(3.3)}M212 160H190V166M212 ${kote(3.4)}H190V${kote(3.4) + 6}"/><g class="t-ventil">${plass(200, 160, 0, VENTIL)}${plass(200, kote(3.4), 0, VENTIL)}${plass(234, 196, 0, VENTIL)}</g></g>
-<g class="t-el"><path class="t-kabel" d="M64 199V176H67M64 176V128H104V131"/>${plass(67, 176, -90, STIKK)}${plass(104, 136, 0, LAMPE)}</g>
+<g class="t-vent"><path d="M${KANAL_X} 124V${takY(KANAL_X) - 12}M${KANAL_X + 8} 124V${takY(KANAL_X) - 12}M${KANAL_X - 2} 124H${KANAL_X + 10}M${KANAL_X - 6} ${takY(KANAL_X) - 12}H${KANAL_X + 14}"/><path class="t-pil-strek" d="M${KANAL_X + 4} 142V${takY(KANAL_X) - 4}"/>${PIL(KANAL_X + 4, 134, 0)}${PIL(KANAL_X + 4, 92, 0)}${PIL(KANAL_X + 4, takY(KANAL_X) - 4, 0)}</g>
+<g class="t-ror t-stige"><path d="M276 196H212V${kote(3.4)}M212 160H190V166M212 ${kote(3.4)}H190V${kote(3.4) + 6}"/><g class="t-ventil">${plass(200, 160, 0, VENTIL)}${plass(200, kote(3.4), 0, VENTIL)}${plass(234, 196, 0, VENTIL)}</g></g>
+<g class="t-el"><path class="t-kabel" d="M64 199V176H67M64 176V128H104"/>${plass(67, 176, -90, STIKK)}${plass(104, 133, 0, LAMPE)}</g>
 <g class="t-maal">${koteMerke(186, '±0')}${koteMerke(116, '+2,7', 258)}${koteMerke(MONE[1], '+5,4', 163)}</g>
 <g class="t-forklaring"><g class="t-tre"><path d="${BJELKE(4, 216, 4, 9)}"/></g><text x="13" y="225">Tre</text>
-<g class="t-el">${plass(46, 220, 0, LAMPE)}${plass(60, 215, 0, STIKK)}</g><text x="72" y="225">El</text>
+<g class="t-el">${plass(46, 220, 0, LAMPE)}${plass(56, 220, -90, STIKK)}</g><text x="72" y="225">El</text>
 <g class="t-ror t-stige"><path d="M94 220H116"/><g class="t-ventil">${plass(105, 220, 0, VENTIL)}</g></g><text x="120" y="225">Rør</text>
 <g class="t-vent"><path d="M146 216H170M146 224H170"/><path class="t-pil-strek" d="M148 220H164"/>${PIL(166, 220, 90)}</g><text x="175" y="225">Vent.</text><text x="262" y="225">Snitt B–B</text></g>
 </svg>`;

@@ -111,6 +111,7 @@ svg .t-tomrer{stroke:var(--tre);stroke-width:1}
 .t-vent .t-pil{fill:var(--vent);stroke:none}
 .t-stige path{stroke-width:2.4;stroke-linejoin:round}
 .t-ror .t-ventil path{fill:var(--ror);stroke-width:1}
+@media (max-width:600px){.snitt text{font-size:12px}}
 .t-maal .t-hjelp{fill:none;stroke:currentColor;stroke-width:.6;stroke-dasharray:2 2;opacity:.6}
 .t-ark{fill:var(--flate);stroke:currentColor;stroke-width:1}
 .t-tf path{fill:none;stroke:currentColor;stroke-width:.8}
